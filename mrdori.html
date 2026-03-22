@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MrDori – Nền Tảng Bất Động Sản Premium Việt Nam</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;font-size:14px;background:#F5F4F2;color:#1C1C1E;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:'DM Sans',sans-serif;cursor:pointer}
+input,select,textarea{font-family:'DM Sans',sans-serif}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#f1f1f1}
+::-webkit-scrollbar-thumb{background:#C41E3A;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#A01828}
+
+/* ===================== CSS VARIABLES ===================== */
+:root{
+  --red:#C41E3A;--red-dark:#A01828;--red-light:#FFF0F2;--red-mid:#F5C6CC;
+  --gold:#B8860B;--gold-light:#FFF8E7;
+  --navy:#0F1B2D;--navy-mid:#1C2E4A;
+  --white:#FFFFFF;--off-white:#F5F4F2;--cream:#FAF9F7;
+  --gray-50:#FAFAFA;--gray-100:#F4F4F5;--gray-200:#E4E4E7;--gray-300:#D4D4D8;
+  --gray-400:#A1A1AA;--gray-500:#71717A;--gray-600:#52525B;--gray-700:#3F3F46;--gray-800:#27272A;--gray-900:#18181B;
+  --green:#16A34A;--green-light:#F0FDF4;--orange:#EA580C;--blue:#1D4ED8;--blue-light:#EFF6FF;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.05);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px rgba(0,0,0,.1),0 4px 6px rgba(0,0,0,.05);
+  --shadow-xl:0 20px 25px rgba(0,0,0,.1),0 10px 10px rgba(0,0,0,.04);
+  --shadow-2xl:0 25px 50px rgba(0,0,0,.25);
+  --radius-sm:4px;--radius:8px;--radius-md:10px;--radius-lg:14px;--radius-xl:20px;--radius-full:9999px;
+  --transition:.15s cubic-bezier(.4,0,.2,1);
+  --header-h:132px;
+}
+
+/* ===================== TICKER ===================== */
+.ticker{background:var(--navy);padding:0;overflow:hidden;height:34px;display:flex;align-items:center}
+.ticker-inner{display:flex;align-items:center;white-space:nowrap;animation:ticker 45s linear infinite}
+.ticker-inner:hover{animation-play-state:paused}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 28px;border-right:1px solid rgba(255,255,255,.1)}
+.ticker-label{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+.ticker-val{font-size:12px;font-weight:600;color:#fff}
+.ticker-chg{font-size:11px;padding:1px 6px;border-radius:3px;font-weight:700}
+.up{background:rgba(22,163,74,.2);color:#4ADE80}
+.dn{background:rgba(196,30,58,.25);color:#F87171}
+.ticker-brand{display:inline-flex;align-items:center;gap:8px;padding:0 24px;background:var(--red);height:34px;flex-shrink:0}
+.ticker-brand span{font-size:12px;font-weight:700;color:#fff;letter-spacing:.5px}
+
+/* ===================== HEADER ===================== */
+.header{background:#fff;position:sticky;top:0;z-index:500;box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.header-top{border-bottom:1px solid var(--gray-100)}
+.header-top-inner{max-width:1320px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0;cursor:pointer}
+.logo-mark{width:42px;height:42px;background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(196,30,58,.3)}
+.logo-mark::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent)}
+.logo-mark svg{width:22px;height:22px;fill:#fff}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-text .name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-0.5px}
+.logo-text .name span{color:var(--red)}
+.logo-text .tagline{font-size:10px;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+.search-wrap{flex:1;max-width:640px;position:relative}
+.search-box{display:flex;background:var(--gray-50);border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition)}
+.search-box:focus-within{border-color:var(--red);background:#fff;box-shadow:0 0 0 4px rgba(196,30,58,.08)}
+.search-cat{padding:0 14px;background:transparent;border:none;border-right:2px solid var(--gray-200);font-size:13px;color:var(--gray-600);min-width:130px;outline:none;cursor:pointer}
+.search-input{flex:1;border:none;background:transparent;padding:11px 14px;font-size:14px;color:var(--gray-900);outline:none}
+.search-input::placeholder{color:var(--gray-400)}
+.search-btn{background:var(--red);border:none;padding:0 22px;color:#fff;display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;transition:var(--transition);white-space:nowrap}
+.search-btn:hover{background:var(--red-dark)}
+.search-btn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.5}
+.header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto}
+.hdr-link{font-size:13px;color:var(--gray-600);padding:7px 12px;border-radius:var(--radius);transition:var(--transition);white-space:nowrap}
+.hdr-link:hover{color:var(--red);background:var(--red-light)}
+.btn-login{background:transparent;border:1.5px solid var(--gray-300);color:var(--gray-700);padding:8px 18px;border-radius:var(--radius-full);font-size:13px;font-weight:600;transition:var(--transition)}
+.btn-login:hover{border-color:var(--red);color:var(--red)}
+.btn-register{background:var(--red);border:1.5px solid var(--red);color:#fff;padding:8px 18px;border-radius:var(--radius-full);font-size:13px;font-weight:600;transition:var(--transition)}
+.btn-register:hover{background:var(--red-dark);border-color:var(--red-dark);box-shadow:0 4px 12px rgba(196,30,58,.3)}
+.btn-post{background:linear-gradient(135deg,var(--navy),var(--navy-mid));border:none;color:#fff;padding:9px 20px;border-radius:var(--radius-full);font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;transition:var(--transition);box-shadow:0 4px 12px rgba(15,27,45,.2)}
+.btn-post:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,27,45,.3)}
+.btn-post svg{width:15px;height:15px;fill:#fff}
+.user-menu-wrap{position:relative}
+.user-btn{display:flex;align-items:center;gap:9px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-full);padding:5px 14px 5px 5px;cursor:pointer;transition:var(--transition)}
+.user-btn:hover{border-color:var(--red)}
+.user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-size:13px;font-weight:600;color:var(--gray-800)}
+.user-caret{width:14px;height:14px;fill:none;stroke:var(--gray-400);stroke-width:2;transition:var(--transition)}
+.user-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);min-width:220px;padding:8px;display:none;z-index:600}
+.user-dropdown.open{display:block;animation:fadeSlide .15s ease}
+.user-dd-head{padding:10px 12px 8px;border-bottom:1px solid var(--gray-100);margin-bottom:6px}
+.user-dd-head .name{font-size:14px;font-weight:700;color:var(--gray-900)}
+.user-dd-head .email{font-size:12px;color:var(--gray-400);margin-top:1px}
+.dd-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius);font-size:13.5px;color:var(--gray-700);cursor:pointer;transition:var(--transition)}
+.dd-item:hover{background:var(--gray-50);color:var(--gray-900)}
+.dd-item svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;flex-shrink:0}
+.dd-item.danger{color:#DC2626}
+.dd-item.danger:hover{background:#FEF2F2}
+.dd-divider{height:1px;background:var(--gray-100);margin:6px 0}
+
+/* ===================== NAV ===================== */
+.nav{border-top:1px solid var(--gray-100)}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:2px}
+.nav-item{padding:13px 18px;font-size:13.5px;font-weight:500;color:var(--gray-600);border-bottom:3px solid transparent;cursor:pointer;transition:var(--transition);white-space:nowrap;display:flex;align-items:center;gap:6px;position:relative;margin-bottom:-1px}
+.nav-item:hover{color:var(--red)}
+.nav-item.active{color:var(--red);border-bottom-color:var(--red);font-weight:700}
+.nav-badge{background:var(--red);color:#fff;font-size:9.5px;font-weight:800;padding:1px 5px;border-radius:10px;letter-spacing:.3px}
+.nav-badge.green{background:var(--green)}
+.nav-badge.gold{background:var(--gold)}
+
+/* ===================== FILTER ZONE ===================== */
+.filter-zone{background:#fff;border-bottom:1px solid var(--gray-200);position:sticky;top:var(--header-h);z-index:400}
+.filter-inner{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto}
+.filter-inner::-webkit-scrollbar{height:0}
+.fchip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-full);font-size:13px;color:var(--gray-700);cursor:pointer;transition:var(--transition);white-space:nowrap;user-select:none;flex-shrink:0;position:relative}
+.fchip:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+.fchip.active{background:var(--red-light);border-color:var(--red);color:var(--red);font-weight:600}
+.fchip svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.5;transition:var(--transition)}
+.fchip.open svg.caret{transform:rotate(180deg)}
+.fdrop{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);min-width:240px;max-height:360px;overflow-y:auto;padding:6px;z-index:600;display:none}
+.fdrop.open{display:block;animation:fadeSlide .15s ease}
+.fdrop-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius);font-size:13.5px;color:var(--gray-700);cursor:pointer;transition:var(--transition)}
+.fdrop-item:hover{background:var(--red-light);color:var(--red)}
+.fdrop-item.active{background:var(--red-light);color:var(--red);font-weight:600}
+.fdrop-item svg{width:16px;height:16px}
+.fdrop-sep{height:1px;background:var(--gray-100);margin:4px 0}
+.fdrop-head{padding:8px 12px 4px;font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.8px}
+.fdrop-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px}
+.fdrop-pill{padding:7px 12px;border:1.5px solid var(--gray-200);border-radius:var(--radius-full);font-size:12.5px;text-align:center;cursor:pointer;transition:var(--transition);color:var(--gray-700)}
+.fdrop-pill:hover{border-color:var(--red);color:var(--red)}
+.fdrop-pill.active{background:var(--red-light);border-color:var(--red);color:var(--red);font-weight:600}
+.fdrop-range{padding:10px 12px}
+.fdrop-range label{font-size:12px;color:var(--gray-500);font-weight:600;display:block;margin-bottom:6px}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-row input{flex:1;padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-size:13px;outline:none;transition:var(--transition);text-align:center}
+.range-row input:focus{border-color:var(--red)}
+.range-row span{color:var(--gray-400);font-size:13px}
+.apply-btn{width:100%;margin-top:10px;padding:9px;background:var(--red);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:700;cursor:pointer;transition:var(--transition)}
+.apply-btn:hover{background:var(--red-dark)}
+.f-divider{width:1px;height:22px;background:var(--gray-200);flex-shrink:0}
+.f-reset{font-size:13px;color:var(--red);cursor:pointer;font-weight:600;padding:6px 8px;white-space:nowrap;flex-shrink:0}
+.f-reset:hover{text-decoration:underline}
+
+/* ===================== LAYOUT ===================== */
+.page{max-width:1320px;margin:16px auto;padding:0 20px;display:grid;grid-template-columns:268px 1fr;gap:18px;align-items:start}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;position:sticky;top:calc(var(--header-h) + 54px)}
+.sb-section{border-bottom:1px solid var(--gray-100)}
+.sb-section:last-child{border-bottom:none}
+.sb-toggle{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;cursor:pointer;user-select:none;transition:var(--transition)}
+.sb-toggle:hover{background:var(--gray-50)}
+.sb-toggle h4{font-size:13.5px;font-weight:700;color:var(--gray-900)}
+.sb-toggle svg{width:14px;height:14px;fill:none;stroke:var(--gray-400);stroke-width:2.5;transition:var(--transition);flex-shrink:0}
+.sb-toggle.open svg{transform:rotate(180deg)}
+.sb-body{padding:0 16px 14px}
+.sb-body.hidden{display:none}
+.sb-checkgroup{display:flex;flex-direction:column;gap:7px}
+.sb-check{display:flex;align-items:center;gap:9px;cursor:pointer}
+.sb-check input{width:16px;height:16px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
+.sb-check .lbl{font-size:13px;color:var(--gray-700);flex:1}
+.sb-check .cnt{font-size:11.5px;color:var(--gray-400)}
+.sb-see-more{color:var(--red);font-size:12.5px;font-weight:600;cursor:pointer;margin-top:6px;display:inline-block}
+.sb-see-more:hover{text-decoration:underline}
+.sb-pills{display:flex;flex-wrap:wrap;gap:6px}
+.sb-pill{padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:var(--radius-full);font-size:12.5px;color:var(--gray-600);cursor:pointer;transition:var(--transition)}
+.sb-pill:hover{border-color:var(--red);color:var(--red)}
+.sb-pill.active{background:var(--red-light);border-color:var(--red);color:var(--red);font-weight:600}
+.sb-range{display:flex;flex-direction:column;gap:8px}
+.sb-range .row{display:flex;align-items:center;gap:8px}
+.sb-range input{flex:1;padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-size:13px;outline:none;text-align:center;transition:var(--transition)}
+.sb-range input:focus{border-color:var(--red)}
+.sb-range .unit{font-size:12px;color:var(--gray-400)}
+.sb-apply{width:100%;padding:8px;background:var(--red);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;transition:var(--transition)}
+.sb-apply:hover{background:var(--red-dark)}
+.sb-select{width:100%;padding:8px 10px;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-size:13px;outline:none;color:var(--gray-700);cursor:pointer;margin-bottom:8px;transition:var(--transition)}
+.sb-select:focus{border-color:var(--red)}
+.sb-featured{margin:0 -16px;overflow:hidden}
+.sb-featured img{width:100%;height:110px;object-fit:cover}
+.sb-featured-body{padding:10px 16px}
+.sb-featured-body h5{font-size:13px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+.sb-featured-body p{font-size:12px;color:var(--gray-500)}
+
+/* ===================== LISTINGS ===================== */
+.listings-wrap{display:flex;flex-direction:column;gap:12px}
+.listings-head{background:#fff;border-radius:var(--radius-lg);padding:12px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.listings-count{font-size:14px;color:var(--gray-700)}
+.listings-count strong{color:var(--red);font-size:16px}
+.head-right{display:flex;align-items:center;gap:10px}
+.sort-sel{padding:7px 12px;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;background:#fff}
+.sort-sel:focus{border-color:var(--red)}
+.view-tog{display:flex;border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
+.view-tog button{padding:6px 10px;border:none;background:transparent;cursor:pointer;color:var(--gray-400);transition:var(--transition);display:flex;align-items:center}
+.view-tog button.active{background:var(--red);color:#fff}
+.view-tog button:hover:not(.active){background:var(--gray-100)}
+.view-tog svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+#cardsGrid{display:flex;flex-direction:column;gap:10px}
+#cardsGrid.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ===================== PROPERTY CARD ===================== */
+.pcard{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;transition:all .2s ease;cursor:pointer;border:2px solid transparent;position:relative}
+.pcard:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:rgba(196,30,58,.1)}
+.pcard.vip-gold{border-left:4px solid var(--gold)}
+.pcard.vip-red{border-left:4px solid var(--red)}
+#cardsGrid.grid .pcard{flex-direction:column}
+.card-media{width:210px;min-height:158px;flex-shrink:0;overflow:hidden;position:relative}
+#cardsGrid.grid .card-media{width:100%;height:195px}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:.4s ease}
+.pcard:hover .card-media img{transform:scale(1.06)}
+.card-badge{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:var(--radius-full);font-size:10px;font-weight:800;letter-spacing:.4px;z-index:2}
+.b-vip{background:linear-gradient(135deg,#B8860B,#DAA520);color:#fff;box-shadow:0 2px 8px rgba(184,134,11,.4)}
+.b-vip1{background:linear-gradient(135deg,#7C3AED,#6D28D9);color:#fff;box-shadow:0 2px 8px rgba(109,40,217,.4)}
+.b-hot{background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;box-shadow:0 2px 8px rgba(196,30,58,.4)}
+.b-new{background:linear-gradient(135deg,#059669,#047857);color:#fff;box-shadow:0 2px 8px rgba(5,150,105,.4)}
+.b-norm{background:rgba(0,0,0,.55);color:#fff;backdrop-filter:blur(4px)}
+.card-imgcount{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:3px 8px;border-radius:var(--radius-full);display:flex;align-items:center;gap:4px;backdrop-filter:blur(4px)}
+.card-imgcount svg{width:11px;height:11px;fill:#fff}
+.card-save-btn{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(255,255,255,.9);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);backdrop-filter:blur(4px);z-index:2}
+.card-save-btn:hover{transform:scale(1.1)}
+.card-save-btn.saved{background:var(--red)}
+.card-save-btn svg{width:14px;height:14px;fill:none;stroke:var(--gray-600);stroke-width:2;transition:var(--transition)}
+.card-save-btn.saved svg{stroke:#fff;fill:#fff}
+.card-body{padding:13px 16px;flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
+.card-title{font-size:14.5px;font-weight:700;color:var(--gray-900);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;transition:var(--transition)}
+.pcard:hover .card-title{color:var(--red)}
+.card-price-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card-price{font-size:16px;font-weight:800;color:var(--red);font-family:'Cormorant Garamond',serif}
+.card-price.nego{color:var(--orange)}
+.card-dot{color:var(--gray-300)}
+.card-area{font-size:13px;color:var(--gray-600);display:flex;align-items:center;gap:4px}
+.card-price-m2{font-size:12px;color:var(--gray-400);background:var(--gray-100);padding:2px 7px;border-radius:var(--radius-full)}
+.card-specs{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.spec-item{display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--gray-600)}
+.spec-item svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;color:var(--gray-400)}
+.card-location{font-size:12.5px;color:var(--gray-500);display:flex;align-items:center;gap:5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.card-location svg{width:12px;height:12px;fill:var(--red);flex-shrink:0}
+.card-desc{font-size:12.5px;color:var(--gray-500);line-height:1.55;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap}
+.ctag{font-size:11px;padding:2px 8px;background:var(--gray-100);color:var(--gray-600);border-radius:var(--radius-full)}
+.ctag.red{background:var(--red-light);color:var(--red)}
+.ctag.green{background:var(--green-light);color:var(--green)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:9px;border-top:1px solid var(--gray-100)}
+.agent-row{display:flex;align-items:center;gap:8px;min-width:0}
+.agent-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
+.agent-av img{width:100%;height:100%;object-fit:cover}
+.agent-info{min-width:0}
+.agent-name{font-size:12px;font-weight:600;color:var(--gray-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agent-sub{font-size:11px;color:var(--gray-400)}
+.card-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.card-time{font-size:11.5px;color:var(--gray-400)}
+.btn-call{background:var(--green);color:#fff;border:none;border-radius:var(--radius-full);padding:6px 14px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:5px;transition:var(--transition)}
+.btn-call:hover{background:#15803D;box-shadow:0 4px 12px rgba(22,163,74,.35)}
+.btn-call svg{width:12px;height:12px;fill:#fff}
+.card-verified{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--green);font-weight:600;background:var(--green-light);padding:2px 7px;border-radius:var(--radius-full)}
+
+/* ===================== PAGINATION ===================== */
+.pag{display:flex;justify-content:center;align-items:center;gap:5px;padding:8px 0}
+.pag-btn{width:36px;height:36px;border-radius:var(--radius);border:1.5px solid var(--gray-200);background:#fff;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--gray-600);transition:var(--transition);display:flex;align-items:center;justify-content:center}
+.pag-btn:hover{border-color:var(--red);color:var(--red)}
+.pag-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 12px rgba(196,30,58,.3)}
+.pag-btn.dots{border:none;background:transparent;cursor:default}
+.pag-info{font-size:12.5px;color:var(--gray-400);margin:0 8px}
+
+/* ===================== DETAIL OVERLAY ===================== */
+.detail-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:900;overflow-y:auto;padding:20px;backdrop-filter:blur(2px)}
+.detail-overlay.open{display:flex;align-items:flex-start;justify-content:center;animation:fadeIn .2s ease}
+.detail-box{background:#fff;border-radius:var(--radius-xl);max-width:1000px;width:100%;overflow:hidden;box-shadow:var(--shadow-2xl);animation:slideUp .25s ease}
+.detail-header{padding:18px 24px;border-bottom:1px solid var(--gray-100);display:flex;align-items:flex-start;gap:14px}
+.detail-title{flex:1}
+.detail-title h2{font-size:17px;font-weight:800;color:var(--gray-900);line-height:1.4}
+.detail-title .meta{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+.detail-close{background:var(--gray-100);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:var(--gray-600);font-size:18px;transition:var(--transition)}
+.detail-close:hover{background:var(--red);color:#fff}
+.detail-cols{display:grid;grid-template-columns:1fr 320px;min-height:400px}
+.detail-main{padding:20px 24px;border-right:1px solid var(--gray-100)}
+.detail-gallery{margin-bottom:20px}
+.gal-main{width:100%;height:300px;border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:pointer;background:var(--gray-100)}
+.gal-main img{width:100%;height:100%;object-fit:cover;transition:.4s ease}
+.gal-main:hover img{transform:scale(1.03)}
+.gal-main .count-badge{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:4px 10px;border-radius:var(--radius-full);cursor:pointer;backdrop-filter:blur(4px)}
+.gal-thumbs{display:flex;gap:8px;margin-top:8px;overflow-x:auto}
+.gal-thumb{width:80px;height:60px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;cursor:pointer;border:2px solid transparent;transition:var(--transition)}
+.gal-thumb:hover,.gal-thumb.active{border-color:var(--red)}
+.gal-thumb img{width:100%;height:100%;object-fit:cover}
+.detail-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.dspec{background:var(--gray-50);border-radius:var(--radius-md);padding:12px}
+.dspec .dl{font-size:11px;color:var(--gray-400);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.dspec .dv{font-size:14.5px;font-weight:700;color:var(--gray-900)}
+.dspec .dv.big{font-size:18px;color:var(--red);font-family:'Cormorant Garamond',serif}
+.detail-section{margin-bottom:20px}
+.detail-section h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.detail-section h3::before{content:'';width:4px;height:16px;background:var(--red);border-radius:2px;display:inline-block}
+.desc-text{font-size:13.5px;color:var(--gray-600);line-height:1.7}
+.detail-features{display:flex;flex-wrap:wrap;gap:8px}
+.feat-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-full);font-size:12.5px;color:var(--gray-700)}
+.feat-chip svg{width:13px;height:13px;fill:none;stroke:var(--red);stroke-width:2}
+.detail-side{padding:20px}
+.contact-card{border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:14px}
+.contact-card-head{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:16px;display:flex;align-items:center;gap:12px}
+.agent-big-av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0;overflow:hidden;border:3px solid rgba(255,255,255,.2)}
+.agent-big-av img{width:100%;height:100%;object-fit:cover}
+.agent-big-info{min-width:0}
+.agent-big-info h4{font-size:15px;font-weight:700;color:#fff}
+.agent-big-info .type{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.agent-big-info .stars{color:var(--gold);font-size:12px;margin-top:2px}
+.contact-card-body{padding:14px}
+.masked-phone{display:flex;align-items:center;justify-content:space-between;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:12px;margin-bottom:10px;cursor:pointer;transition:var(--transition)}
+.masked-phone:hover{border-color:var(--red)}
+.masked-phone .ph{font-size:16px;font-weight:800;color:var(--gray-900);letter-spacing:1px}
+.masked-phone .reveal{font-size:12px;color:var(--red);font-weight:600}
+.btn-phone-big{width:100%;padding:12px;background:linear-gradient(135deg,var(--green),#15803D);color:#fff;border:none;border-radius:var(--radius-md);font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:var(--transition);margin-bottom:8px;box-shadow:0 4px 12px rgba(22,163,74,.3)}
+.btn-phone-big:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(22,163,74,.4)}
+.btn-zalo{width:100%;padding:12px;background:linear-gradient(135deg,#0068FF,#0050C8);color:#fff;border:none;border-radius:var(--radius-md);font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:var(--transition);margin-bottom:8px;box-shadow:0 4px 12px rgba(0,104,255,.25)}
+.btn-zalo:hover{transform:translateY(-1px)}
+.btn-msg{width:100%;padding:10px;background:transparent;border:1.5px solid var(--gray-300);color:var(--gray-700);border-radius:var(--radius-md);font-size:13.5px;font-weight:600;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-msg:hover{border-color:var(--red);color:var(--red)}
+.mini-map{width:100%;height:180px;background:linear-gradient(135deg,#e8f4fd,#dbeafe);border-radius:var(--radius-md);overflow:hidden;position:relative;cursor:pointer;border:1.5px solid #BFDBFE;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;margin-top:14px;transition:var(--transition)}
+.mini-map:hover{opacity:.9}
+.mini-map svg{width:32px;height:32px;fill:none;stroke:var(--blue);stroke-width:1.5}
+.mini-map span{font-size:13px;color:var(--blue);font-weight:600}
+.mini-map .map-label{font-size:11px;color:var(--gray-400)}
+.price-history{background:var(--gold-light);border:1.5px solid rgba(184,134,11,.2);border-radius:var(--radius-md);padding:12px;margin-top:14px}
+.price-history h5{font-size:12.5px;font-weight:700;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ph-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:3px 0;border-bottom:1px dashed rgba(184,134,11,.15)}
+.ph-item:last-child{border:none}
+.ph-item .ph-date{color:var(--gray-500)}
+.ph-item .ph-price{font-weight:700;color:var(--gray-800)}
+
+/* ===================== AUTH MODAL ===================== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
+.modal-box{background:#fff;border-radius:var(--radius-xl);width:100%;max-width:440px;overflow:hidden;box-shadow:var(--shadow-2xl);animation:slideUp .25s ease}
+.modal-top{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:28px;text-align:center}
+.modal-top .m-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:2px}
+.modal-top .m-logo span{color:var(--red)}
+.modal-top .m-sub{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase}
+.modal-tabs{display:flex;border-bottom:1px solid var(--gray-100)}
+.modal-tab{flex:1;padding:13px;text-align:center;font-size:14px;font-weight:600;cursor:pointer;color:var(--gray-500);border-bottom:3px solid transparent;transition:var(--transition);margin-bottom:-1px}
+.modal-tab.active{color:var(--red);border-bottom-color:var(--red)}
+.modal-body{padding:24px}
+.form-field{margin-bottom:16px}
+.form-field label{display:block;font-size:12.5px;font-weight:700;color:var(--gray-700);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.form-field input,.form-field select{width:100%;padding:11px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:14px;color:var(--gray-900);outline:none;transition:var(--transition)}
+.form-field input:focus,.form-field select:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(196,30,58,.08)}
+.form-field.icon-field{position:relative}
+.form-field.icon-field input{padding-left:42px}
+.form-field.icon-field .f-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;fill:none;stroke:var(--gray-400);stroke-width:2}
+.form-field.icon-field .f-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;background:none;border:none;padding:0;color:var(--gray-400)}
+.form-field.icon-field .f-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.forgot-link{text-align:right;margin-top:-10px;margin-bottom:16px}
+.forgot-link a{font-size:12.5px;color:var(--red);font-weight:600}
+.forgot-link a:hover{text-decoration:underline}
+.btn-submit{width:100%;padding:13px;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;border:none;border-radius:var(--radius-md);font-size:15px;font-weight:800;cursor:pointer;transition:var(--transition);box-shadow:0 4px 12px rgba(196,30,58,.35);letter-spacing:.3px}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(196,30,58,.45)}
+.or-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--gray-400);font-size:12.5px}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--gray-200)}
+.social-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.social-btn{padding:10px;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);color:var(--gray-700)}
+.social-btn:hover{background:var(--gray-50);border-color:var(--gray-300)}
+.social-btn svg{width:18px;height:18px}
+.modal-note{text-align:center;font-size:12px;color:var(--gray-400);margin-top:12px}
+.modal-note a{color:var(--red);font-weight:600}
+.modal-note a:hover{text-decoration:underline}
+.terms-check{display:flex;align-items:flex-start;gap:9px;margin:4px 0 16px;font-size:12.5px;color:var(--gray-600)}
+.terms-check input{width:15px;height:15px;accent-color:var(--red);flex-shrink:0;margin-top:1px}
+.terms-check a{color:var(--red)}
+
+/* ===================== TOAST ===================== */
+.toast-stack{position:fixed;bottom:24px;right:24px;z-index:2000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast-item{display:flex;align-items:center;gap:10px;background:var(--gray-900);color:#fff;padding:13px 18px;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);font-size:13.5px;font-weight:500;min-width:260px;max-width:360px;transform:translateX(120%);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:auto}
+.toast-item.show{transform:translateX(0);opacity:1}
+.toast-item.leaving{transform:translateX(120%);opacity:0;transition:all .25s ease}
+.toast-icon{font-size:18px;flex-shrink:0}
+.toast-item.t-success{background:linear-gradient(135deg,#166534,#15803D)}
+.toast-item.t-error{background:linear-gradient(135deg,var(--red-dark),var(--red))}
+.toast-item.t-info{background:linear-gradient(135deg,var(--navy),var(--navy-mid))}
+.toast-item.t-warn{background:linear-gradient(135deg,#92400E,#B45309)}
+.toast-close{margin-left:auto;background:transparent;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:16px;padding:0 0 0 6px}
+.toast-close:hover{color:#fff}
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:1100;align-items:center;justify-content:center;flex-direction:column}
+.lightbox.open{display:flex;animation:fadeIn .2s ease}
+.lb-img{max-width:90vw;max-height:80vh;border-radius:var(--radius-md);object-fit:contain;animation:scaleIn .2s ease}
+.lb-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer;transition:var(--transition)}
+.lb-close:hover{background:rgba(255,255,255,.2)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;width:50px;height:50px;border-radius:50%;font-size:24px;cursor:pointer;transition:var(--transition)}
+.lb-nav:hover{background:rgba(255,255,255,.2)}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+.lb-counter{color:rgba(255,255,255,.7);font-size:13px;margin-top:14px}
+
+/* ===================== LOADING ===================== */
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,.7);z-index:800;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.loading-overlay.open{display:flex}
+.spinner{width:44px;height:44px;border:4px solid var(--red-mid);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===================== EMPTY STATE ===================== */
+.empty-state{background:#fff;border-radius:var(--radius-lg);padding:64px 24px;text-align:center;box-shadow:var(--shadow-sm)}
+.empty-state svg{width:64px;height:64px;fill:none;stroke:var(--gray-300);stroke-width:1.2;margin:0 auto 16px}
+.empty-state h3{font-size:18px;font-weight:700;color:var(--gray-600);margin-bottom:8px}
+.empty-state p{font-size:14px;color:var(--gray-400)}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+
+/* ===================== BREADCRUMB ===================== */
+.breadcrumb{max-width:1320px;margin:12px auto 0;padding:0 20px;display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--gray-400)}
+.breadcrumb a{color:var(--red);transition:var(--transition)}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* ===================== FOOTER ===================== */
+.footer{background:var(--navy);color:rgba(255,255,255,.7);padding:48px 0 20px;margin-top:40px}
+.footer-inner{max-width:1320px;margin:0 auto;padding:0 20px}
+.footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1.1fr;gap:40px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand .f-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:10px}
+.footer-brand .f-logo span{color:var(--red)}
+.footer-brand p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5);max-width:280px}
+.footer-social{display:flex;gap:8px;margin-top:18px}
+.f-social{width:36px;height:36px;background:rgba(255,255,255,.06);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:rgba(255,255,255,.7);transition:var(--transition);cursor:pointer}
+.f-social:hover{background:var(--red);color:#fff}
+.footer-col h4{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:8px;transition:var(--transition)}
+.footer-col a:hover{color:var(--red)}
+.footer-bottom{padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.3)}
+.footer-bottom a{color:rgba(255,255,255,.4);margin-left:16px;transition:var(--transition)}
+.footer-bottom a:hover{color:var(--red)}
+.footer-cert{display:flex;align-items:center;gap:6px}
+.cert-badge{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:4px 10px;font-size:11px;color:rgba(255,255,255,.4)}
+
+/* ===================== MOBILE RESPONSIVE ===================== */
+@media(max-width:1024px){
+  .page{grid-template-columns:1fr}
+  .sidebar{position:static;display:none}
+  .detail-cols{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .search-cat{display:none}
+  .header-actions .hdr-link{display:none}
+  #cardsGrid.grid{grid-template-columns:1fr}
+  .detail-specs{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <div class="header-top-inner">
+      <!-- LOGO -->
+      <div class="logo" onclick="location.reload()">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+        </div>
+        <div class="logo-text">
+          <span class="name">Mr<span>Dori</span></span>
+          <span class="tagline">Premium Real Estate</span>
+        </div>
+      </div>
+      <!-- SEARCH -->
+      <div class="search-wrap">
+        <div class="search-box">
+          <select class="search-cat" id="searchCat">
+            <option value="all">Tất cả BĐS</option>
+            <option value="sell">Nhà đất bán</option>
+            <option value="rent">Nhà đất thuê</option>
+            <option value="project">Dự án</option>
+          </select>
+          <input class="search-input" id="mainSearchInput" placeholder="Nhập địa chỉ, dự án, từ khóa..." autocomplete="off">
+          <button class="search-btn" onclick="doSearch()">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            Tìm kiếm
+          </button>
+        </div>
+      </div>
+      <!-- ACTIONS -->
+      <div class="header-actions">
+        <span class="hdr-link" onclick="toast('Đang phát triển tính năng này 🛠','info')">Tin tức</span>
+        <span class="hdr-link" onclick="toast('Đang phát triển tính năng này 🛠','info')">Vay mua nhà</span>
+        <!-- Auth Buttons (shown when logged out) -->
+        <div id="authBtns">
+          <button class="btn-login" onclick="openModal('login')" style="margin-right:6px">Đăng nhập</button>
+          <button class="btn-register" onclick="openModal('register')" style="margin-right:8px">Đăng ký</button>
+        </div>
+        <!-- User menu (shown when logged in) -->
+        <div class="user-menu-wrap" id="userMenuWrap" style="display:none">
+          <div class="user-btn" onclick="toggleUserMenu()">
+            <div class="user-avatar" id="userAvatarHead"></div>
+            <span class="user-name" id="userNameHead"></span>
+            <svg class="user-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="user-dd-head">
+              <div class="name" id="ddFullName"></div>
+              <div class="email" id="ddEmail"></div>
+            </div>
+            <div class="dd-item" onclick="openSaved()">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              Tin đã lưu <span id="savedBadge" style="margin-left:auto;background:var(--red);color:#fff;font-size:11px;padding:1px 6px;border-radius:10px;font-weight:700"></span>
+            </div>
+            <div class="dd-item" onclick="toast('Quản lý tin đăng đang phát triển','info')">
+              <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+              Tin đăng của tôi
+            </div>
+            <div class="dd-item" onclick="toast('Cài đặt tài khoản đang phát triển','info')">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2a8 8 0 0116 0v2"/></svg>
+              Thông tin tài khoản
+            </div>
+            <div class="dd-divider"></div>
+            <div class="dd-item danger" onclick="doLogout()">
+              <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Đăng xuất
+            </div>
+          </div>
+        </div>
+        <button class="btn-post" onclick="checkPostListing()">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Đăng tin
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- NAV TABS -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-item active" onclick="navSwitch(this,'sell')">Nhà đất bán</div>
+      <div class="nav-item" onclick="navSwitch(this,'rent')">Nhà đất thuê</div>
+      <div class="nav-item" onclick="navSwitch(this,'project')">Dự án <span class="nav-badge gold">HOT</span></div>
+      <div class="nav-item" onclick="navSwitch(this,'market')">Thị trường</div>
+      <div class="nav-item" onclick="navSwitch(this,'valuation')">Định giá BĐS <span class="nav-badge green">Mới</span></div>
+      <div class="nav-item" onclick="navSwitch(this,'news')">Tin tức</div>
+      <div class="nav-item" onclick="navSwitch(this,'loan')">Vay mua nhà</div>
+    </div>
+  </nav>
+</header>
+
+<!-- FILTER ZONE -->
+<div class="filter-zone">
+  <div class="filter-inner" id="filterBar">
+    <!-- dynamically generated -->
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Trang chủ</a><span>›</span>
+  <span id="breadcurrent" style="color:var(--gray-700);font-weight:600">Nhà đất bán</span>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebarEl">
+
+    <!-- Type -->
+    <div class="sb-section">
+      <div class="sb-toggle open" onclick="sbToggle(this)">
+        <h4>Loại nhà đất</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body sb-checkgroup" id="typeChecks">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="sb-section">
+      <div class="sb-toggle open" onclick="sbToggle(this)">
+        <h4>Khu vực</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body">
+        <select class="sb-select" id="sbCity" onchange="applyFilters()">
+          <option value="">Toàn quốc</option>
+          <option value="hcm">Hồ Chí Minh</option>
+          <option value="hn">Hà Nội</option>
+          <option value="dn">Đà Nẵng</option>
+          <option value="hp">Hải Phòng</option>
+          <option value="ct">Cần Thơ</option>
+          <option value="bd">Bình Dương</option>
+          <option value="dn2">Đồng Nai</option>
+          <option value="kh">Khánh Hòa</option>
+        </select>
+        <select class="sb-select" id="sbDist" onchange="applyFilters()">
+          <option value="">Tất cả quận/huyện</option>
+          <option value="q1">Quận 1</option>
+          <option value="q2">Quận 2 (Thành Thủ Đức)</option>
+          <option value="q3">Quận 3</option>
+          <option value="q7">Quận 7</option>
+          <option value="binh-thanh">Bình Thạnh</option>
+          <option value="phu-nhuan">Phú Nhuận</option>
+          <option value="tan-binh">Tân Bình</option>
+          <option value="go-vap">Gò Vấp</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="sb-section">
+      <div class="sb-toggle open" onclick="sbToggle(this)">
+        <h4>Mức giá</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body">
+        <div class="sb-pills" id="pricePillsBar">
+          <span class="sb-pill" onclick="setPricePill(this,0,0.5)">Dưới 500tr</span>
+          <span class="sb-pill" onclick="setPricePill(this,0.5,1)">500tr–1 tỷ</span>
+          <span class="sb-pill" onclick="setPricePill(this,1,2)">1–2 tỷ</span>
+          <span class="sb-pill" onclick="setPricePill(this,2,5)">2–5 tỷ</span>
+          <span class="sb-pill" onclick="setPricePill(this,5,10)">5–10 tỷ</span>
+          <span class="sb-pill" onclick="setPricePill(this,10,999)">Trên 10 tỷ</span>
+        </div>
+        <div class="sb-range" style="margin-top:10px">
+          <label style="font-size:12px;color:var(--gray-400);font-weight:600;text-transform:uppercase;letter-spacing:.4px">Hoặc nhập khoảng</label>
+          <div class="row">
+            <input type="number" id="sbPriceMin" placeholder="Từ" min="0" step="0.5">
+            <span>—</span>
+            <input type="number" id="sbPriceMax" placeholder="Đến" min="0" step="0.5">
+            <span class="unit">Tỷ</span>
+          </div>
+          <button class="sb-apply" onclick="applyFilters()">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Area -->
+    <div class="sb-section">
+      <div class="sb-toggle open" onclick="sbToggle(this)">
+        <h4>Diện tích</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body">
+        <div class="sb-pills" id="areaPillsBar">
+          <span class="sb-pill" onclick="setAreaPill(this,0,30)">Dưới 30m²</span>
+          <span class="sb-pill" onclick="setAreaPill(this,30,60)">30–60m²</span>
+          <span class="sb-pill" onclick="setAreaPill(this,60,100)">60–100m²</span>
+          <span class="sb-pill" onclick="setAreaPill(this,100,200)">100–200m²</span>
+          <span class="sb-pill" onclick="setAreaPill(this,200,9999)">Trên 200m²</span>
+        </div>
+        <div class="sb-range" style="margin-top:10px">
+          <div class="row">
+            <input type="number" id="sbAreaMin" placeholder="Từ" min="0">
+            <span>—</span>
+            <input type="number" id="sbAreaMax" placeholder="Đến" min="0">
+            <span class="unit">m²</span>
+          </div>
+          <button class="sb-apply" onclick="applyFilters()">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bedrooms -->
+    <div class="sb-section">
+      <div class="sb-toggle open" onclick="sbToggle(this)">
+        <h4>Số phòng ngủ</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body">
+        <div class="sb-pills" id="bedroomPillsBar">
+          <span class="sb-pill" data-bed="1" onclick="setBedPill(this,1)">1 PN</span>
+          <span class="sb-pill" data-bed="2" onclick="setBedPill(this,2)">2 PN</span>
+          <span class="sb-pill" data-bed="3" onclick="setBedPill(this,3)">3 PN</span>
+          <span class="sb-pill" data-bed="4" onclick="setBedPill(this,4)">4 PN</span>
+          <span class="sb-pill" data-bed="5" onclick="setBedPill(this,5)">5+ PN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Direction -->
+    <div class="sb-section">
+      <div class="sb-toggle" onclick="sbToggle(this)">
+        <h4>Hướng nhà</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body hidden">
+        <div class="sb-pills">
+          <span class="sb-pill" onclick="togglePill(this)">Đông</span>
+          <span class="sb-pill" onclick="togglePill(this)">Tây</span>
+          <span class="sb-pill" onclick="togglePill(this)">Nam</span>
+          <span class="sb-pill" onclick="togglePill(this)">Bắc</span>
+          <span class="sb-pill" onclick="togglePill(this)">Đông Nam</span>
+          <span class="sb-pill" onclick="togglePill(this)">Đông Bắc</span>
+          <span class="sb-pill" onclick="togglePill(this)">Tây Nam</span>
+          <span class="sb-pill" onclick="togglePill(this)">Tây Bắc</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="sb-section">
+      <div class="sb-toggle" onclick="sbToggle(this)">
+        <h4>Đặc điểm nổi bật</h4>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sb-body hidden sb-checkgroup">
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Ô tô vào nhà</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Mặt tiền đường lớn</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Hồ bơi riêng</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Thang máy</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Sổ hồng/đỏ đầy đủ</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Full nội thất</span></label>
+        <label class="sb-check"><input type="checkbox" onchange="applyFilters()"><span class="lbl">Đang cho thuê</span></label>
+      </div>
+    </div>
+
+    <!-- Banner ad -->
+    <div class="sb-section">
+      <div class="sb-featured">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=280&h=110&fit=crop" alt="">
+        <div class="sb-featured-body">
+          <h5>🌟 Vinhomes Grand Park</h5>
+          <p>Từ 2.1 tỷ • Q.9 HCM • CĐT chiết khấu 5%</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT PANEL -->
+  <main>
+    <div class="listings-wrap">
+      <!-- HEADER ROW -->
+      <div class="listings-head">
+        <div class="listings-count">Có <strong id="countNum">0</strong> bất động sản bán</div>
+        <div class="head-right">
+          <select class="sort-sel" id="sortSel" onchange="sortChange()">
+            <option value="default">Mặc định</option>
+            <option value="newest">Mới nhất</option>
+            <option value="price_asc">Giá: Thấp → Cao</option>
+            <option value="price_desc">Giá: Cao → Thấp</option>
+            <option value="area_asc">Diện tích: Nhỏ → Lớn</option>
+            <option value="area_desc">Diện tích: Lớn → Nhỏ</option>
+          </select>
+          <div class="view-tog">
+            <button id="listBtn" class="active" onclick="setView('list')" title="Dạng danh sách">
+              <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            </button>
+            <button id="gridBtn" onclick="setView('grid')" title="Dạng lưới">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- CARDS -->
+      <div id="cardsGrid"></div>
+      <!-- PAGINATION -->
+      <div class="pag" id="pagEl"></div>
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo">Mr<span>Dori</span></div>
+        <p>Nền tảng bất động sản uy tín hàng đầu Việt Nam. Kết nối hàng triệu người mua, bán và đầu tư bất động sản trên khắp 63 tỉnh thành.</p>
+        <div class="footer-social">
+          <div class="f-social">f</div>
+          <div class="f-social">in</div>
+          <div class="f-social">yt</div>
+          <div class="f-social">z</div>
+          <div class="f-social">x</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Nhà đất bán</h4>
+        <a href="#">Nhà riêng toàn quốc</a>
+        <a href="#">Căn hộ chung cư</a>
+        <a href="#">Biệt thự villa</a>
+        <a href="#">Đất nền dự án</a>
+        <a href="#">Shophouse</a>
+        <a href="#">Nhà phố thương mại</a>
+      </div>
+      <div class="footer-col">
+        <h4>Công cụ</h4>
+        <a href="#">Định giá BĐS online</a>
+        <a href="#">Tính lãi suất vay</a>
+        <a href="#">Quy hoạch đất đai</a>
+        <a href="#">Kiểm tra pháp lý</a>
+        <a href="#">Tin tức thị trường</a>
+        <a href="#">Báo cáo tháng</a>
+      </div>
+      <div class="footer-col">
+        <h4>Hỗ trợ</h4>
+        <a href="#">Trung tâm hỗ trợ</a>
+        <a href="#">Hướng dẫn đăng tin</a>
+        <a href="#">Quy định dịch vụ</a>
+        <a href="#">Chính sách bảo mật</a>
+        <a href="#">Liên hệ quảng cáo</a>
+        <a href="#">Tuyển dụng</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <div>© 2026 MrDori. Công ty TNHH MrDori Việt Nam. ĐKKD: 0312345678 cấp ngày 01/01/2020 tại TP.HCM</div>
+        <div style="margin-top:4px">📧 contact@mrdori.vn &nbsp;|&nbsp; 📞 1900 6868 &nbsp;|&nbsp; 📍 268 Tô Hiến Thành, P.15, Q.10, HCM</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="footer-cert">
+          <span class="cert-badge">DMCA Protected</span>
+          <span class="cert-badge">SSL Secured</span>
+        </div>
+        <a href="#">Điều khoản</a>
+        <a href="#">Bảo mật</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== MODALS ==================== -->
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div class="m-logo">Mr<span>Dori</span></div>
+      <div class="m-sub">Premium Real Estate Platform</div>
+    </div>
+    <div class="modal-tabs" id="authTabs">
+      <div class="modal-tab active" id="loginTab" onclick="switchAuthTab('login')">Đăng nhập</div>
+      <div class="modal-tab" id="registerTab" onclick="switchAuthTab('register')">Đăng ký</div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="modal-body" id="loginForm">
+      <div class="form-field icon-field">
+        <label>Email hoặc Số điện thoại</label>
+        <svg class="f-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="text" id="loginEmail" placeholder="example@email.com hoặc 0901234567">
+      </div>
+      <div class="form-field icon-field">
+        <label>Mật khẩu</label>
+        <svg class="f-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <input type="password" id="loginPass" placeholder="Nhập mật khẩu của bạn">
+        <button class="f-toggle" onclick="togglePw('loginPass',this)">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <div class="forgot-link"><a href="#" onclick="toast('Vui lòng liên hệ support@mrdori.vn','info');return false">Quên mật khẩu?</a></div>
+      <button class="btn-submit" onclick="doLogin()">Đăng nhập</button>
+      <div class="or-divider">hoặc đăng nhập với</div>
+      <div class="social-btns">
+        <button class="social-btn" onclick="socialLogin('Google')">
+          <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.77A8 8 0 0120 12h-8"/><path fill="#4285F4" d="M20 12a8 8 0 01-11.31 7.24L12 12"/><path fill="#FBBC04" d="M8.69 19.24A8 8 0 014 12c0-1 .18-1.96.5-2.84L12 12"/><circle cx="12" cy="12" r="3" fill="#34A853" opacity=".5"/></svg>
+          Google
+        </button>
+        <button class="social-btn" onclick="socialLogin('Facebook')">
+          <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </button>
+      </div>
+      <p class="modal-note">Chưa có tài khoản? <a href="#" onclick="switchAuthTab('register');return false">Đăng ký ngay</a></p>
+      <p class="modal-note" style="margin-top:6px;color:var(--gray-300)">Demo: dùng bất kỳ email/password hợp lệ</p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="modal-body" id="registerForm" style="display:none">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Họ</label>
+          <input type="text" id="regLast" placeholder="Nguyễn">
+        </div>
+        <div class="form-field">
+          <label>Tên</label>
+          <input type="text" id="regFirst" placeholder="Văn A">
+        </div>
+      </div>
+      <div class="form-field icon-field">
+        <label>Email</label>
+        <svg class="f-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="email" id="regEmail" placeholder="email@example.com">
+      </div>
+      <div class="form-field icon-field">
+        <label>Số điện thoại</label>
+        <svg class="f-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <input type="tel" id="regPhone" placeholder="0901 234 567">
+      </div>
+      <div class="form-field icon-field">
+        <label>Mật khẩu</label>
+        <svg class="f-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <input type="password" id="regPass" placeholder="Tối thiểu 8 ký tự">
+        <button class="f-toggle" onclick="togglePw('regPass',this)">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <div class="form-field">
+        <label>Bạn là</label>
+        <select id="regRole">
+          <option value="buyer">Người mua/thuê</option>
+          <option value="seller">Chủ nhà/Chính chủ</option>
+          <option value="agent">Môi giới BĐS</option>
+          <option value="investor">Nhà đầu tư</option>
+        </select>
+      </div>
+      <div class="terms-check">
+        <input type="checkbox" id="agreeTerms">
+        <span>Tôi đã đọc và đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của MrDori</span>
+      </div>
+      <button class="btn-submit" onclick="doRegister()">Tạo tài khoản</button>
+      <p class="modal-note">Đã có tài khoản? <a href="#" onclick="switchAuthTab('login');return false">Đăng nhập</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- POST LISTING MODAL -->
+<div class="modal-overlay" id="postModal">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-top">
+      <div class="m-logo">✏️ Đăng tin BĐS</div>
+      <div class="m-sub">Đăng tin miễn phí – Tiếp cận triệu người mua</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-field">
+        <label>Loại đăng tin</label>
+        <select id="postType"><option>Cần bán</option><option>Cần cho thuê</option></select>
+      </div>
+      <div class="form-field">
+        <label>Loại bất động sản</label>
+        <select id="postCat">
+          <option>Nhà riêng</option><option>Căn hộ chung cư</option><option>Biệt thự, villa</option>
+          <option>Nhà mặt tiền</option><option>Đất nền</option><option>Shophouse</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Tiêu đề tin đăng</label>
+        <input type="text" id="postTitle" placeholder="VD: Bán nhà riêng 3PN quận Bình Thạnh...">
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Diện tích (m²)</label><input type="number" id="postArea" placeholder="85"></div>
+        <div class="form-field"><label>Mức giá (tỷ)</label><input type="number" id="postPrice" placeholder="3.5" step="0.1"></div>
+      </div>
+      <div class="form-field">
+        <label>Địa chỉ</label>
+        <input type="text" id="postAddr" placeholder="Số nhà, đường, phường, quận...">
+      </div>
+      <div class="form-field">
+        <label>Mô tả</label>
+        <textarea id="postDesc" rows="3" style="width:100%;padding:11px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:14px;outline:none;resize:vertical" placeholder="Mô tả chi tiết về bất động sản..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitPost()">🚀 Đăng tin ngay</button>
+      <p class="modal-note" style="margin-top:10px">Tin đăng miễn phí • Hiển thị ngay lập tức</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROPERTY DETAIL -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-box" id="detailBox"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingEl">
+  <div class="spinner"></div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// ============================================================
+//  DATA
+// ============================================================
+const PROPERTY_TYPES = ['Tất cả','Nhà riêng','Căn hộ chung cư','Biệt thự, villa','Nhà mặt tiền','Đất nền','Shophouse','Nhà xưởng/kho','Căn hộ dịch vụ','Nhà trọ'];
+
+const PROPERTIES = [
+  {id:1,badge:'VIP GOLD',bc:'b-vip',tier:'gold',type:'Nhà riêng',title:'Bán nhà riêng đẹp hẻm 5m Hoàng Hoa Thám Bình Thạnh – 4PN full nội thất, sổ hồng chính chủ',price:4.8,priceDisplay:'4,8 tỷ',area:55,floor:4,bed:4,bath:4,dir:'Đông Nam',city:'hcm',dist:'binh-thanh',loc:'Hoàng Hoa Thám, Bình Thạnh, HCM',desc:'Nhà 1 trệt 3 lầu sân thượng. 4 phòng ngủ 4WC, full nội thất cao cấp. Hẻm xe hơi 5m thông thoáng. Cách mặt tiền 20m. Vị trí đắc địa gần trường THCS, chợ Bà Chiểu, bệnh viện Bình Thạnh. Nhà xây kiên cố năm 2019, mới như mới. Sổ hồng riêng, pháp lý sạch 100%.',tags:['Sổ hồng','Ô tô vào nhà','4 PN','Full nội thất'],features:['Ô tô vào nhà','Sổ hồng đầy đủ','Full nội thất','Hẻm thông thoáng','Gần chợ','Camera an ninh'],agent:'Nguyễn Văn Minh',phone:'0901 234 567',masked:'0901 234 ***',initials:'NM',agentType:'Chính chủ',verified:true,time:'30 phút',imgs:['https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop'],priceHistory:[{date:'T3/2024',p:'4.2 tỷ'},{date:'T9/2024',p:'4.5 tỷ'},{date:'T3/2025',p:'4.8 tỷ'}]},
+  {id:2,badge:'HOT',bc:'b-hot',tier:'red',type:'Căn hộ chung cư',title:'Căn hộ 2PN view sông Sài Gòn – Vinhomes Central Park tầng 18, nội thất cao cấp CĐT',price:7.2,priceDisplay:'7,2 tỷ',area:76,floor:18,bed:2,bath:2,dir:'Nam',city:'hcm',dist:'binh-thanh',loc:'Vinhomes Central Park, Bình Thạnh, HCM',desc:'Căn hộ 2 phòng ngủ 2WC, view trực diện sông Sài Gòn cực đẹp tầng 18. Nội thất cao cấp bàn giao từ chủ đầu tư. Đầy đủ tiện ích nội khu: hồ bơi vô cực, gym, BBQ sân vườn, trường học, siêu thị. Cộng đồng cư dân văn minh, an ninh 24/7.',tags:['View sông','Full nội thất','Hồ bơi','Tầng 18'],features:['View sông Sài Gòn','Hồ bơi vô cực','Gym cao cấp','An ninh 24/7','Trường nội khu','Siêu thị'],agent:'Trần Thị Hoa',phone:'0912 345 678',masked:'0912 345 ***',initials:'TH',agentType:'Môi giới',verified:true,time:'1 giờ',imgs:['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=500&fit=crop'],priceHistory:[{date:'T6/2023',p:'6.5 tỷ'},{date:'T1/2024',p:'6.9 tỷ'},{date:'T3/2025',p:'7.2 tỷ'}]},
+  {id:3,badge:'VIP1',bc:'b-vip1',tier:'gold',type:'Biệt thự, villa',title:'Biệt thự đơn lập KDC Vạn Phúc City Thủ Đức – 320m² 4PN hồ bơi riêng nội thất xa xỉ',price:25,priceDisplay:'25 tỷ',area:320,floor:3,bed:4,bath:6,dir:'Đông',city:'hcm',dist:'q2',loc:'Vạn Phúc City, Thủ Đức, HCM',desc:'Biệt thự đơn lập cao cấp tại KDC Vạn Phúc City. Sân vườn 200m², hồ bơi riêng, phòng chiếu phim, tầng hầm để 3 xe. An ninh 24/7, camera giám sát toàn khu. Thiết kế kiến trúc Châu Âu, sử dụng vật liệu cao cấp nhập khẩu. Sổ hồng lâu dài.',tags:['Hồ bơi riêng','Sân vườn','3 tầng','Sổ hồng'],features:['Hồ bơi riêng','Sân vườn 200m²','Tầng hầm 3 xe','Phòng chiếu phim','An ninh 24/7','Thang máy nội bộ'],agent:'Lê Quang Nam',phone:'0938 456 789',masked:'0938 456 ***',initials:'LN',agentType:'Chính chủ',verified:true,time:'2 giờ',imgs:['https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&h=500&fit=crop'],priceHistory:[{date:'T1/2024',p:'22 tỷ'},{date:'T7/2024',p:'23.5 tỷ'},{date:'T3/2025',p:'25 tỷ'}]},
+  {id:4,badge:'Mới',bc:'b-new',tier:'',type:'Nhà mặt tiền',title:'Nhà mặt tiền Đinh Tiên Hoàng Q.Bình Thạnh 4x18m – đang cho thuê 30tr/tháng, kinh doanh sầm uất',price:15.5,priceDisplay:'15,5 tỷ',area:72,floor:5,bed:5,bath:5,dir:'Tây',city:'hcm',dist:'binh-thanh',loc:'Đinh Tiên Hoàng, Bình Thạnh, HCM',desc:'Nhà mặt tiền vị trí vàng đường Đinh Tiên Hoàng. Đang cho thuê kinh doanh 30tr/tháng, tỷ suất lợi nhuận tốt. 1 trệt 4 lầu, 5PN 5WC, khu vực sầm uất đông dân cư. Thích hợp kinh doanh, văn phòng, cho thuê.',tags:['Mặt tiền','Cho thuê 30tr/tháng','5 tầng','Kinh doanh'],features:['Mặt tiền đường lớn','Đang cho thuê','Sổ hồng đầy đủ','Kinh doanh tốt','Gần chợ','Thang máy'],agent:'Phạm Thu Lan',phone:'0905 567 890',masked:'0905 567 ***',initials:'PL',agentType:'Môi giới',verified:false,time:'3 giờ',imgs:['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&h=500&fit=crop'],priceHistory:[{date:'T6/2024',p:'14 tỷ'},{date:'T12/2024',p:'15 tỷ'},{date:'T3/2025',p:'15.5 tỷ'}]},
+  {id:5,badge:'VIP GOLD',bc:'b-vip',tier:'gold',type:'Đất nền',title:'Đất nền dự án KDC Thành Phố Xanh Bình Chánh – SHR thổ cư 100%, giá F0 từ CĐT, lợi nhuận cao',price:3.0,priceDisplay:'3,0 tỷ',area:120,floor:0,bed:0,bath:0,dir:'',city:'hcm',dist:'',loc:'Bình Chánh, Hồ Chí Minh',desc:'Đất nền trong khu dân cư hiện hữu, hạ tầng hoàn chỉnh 100%. Sổ hồng riêng từng nền, thổ cư 100%, mua là cất nhà ngay. Đường nội khu 12m trải nhựa, điện nước đầy đủ. Vị trí gần QL50, cách trung tâm Bình Chánh 2km. Pháp lý minh bạch.',tags:['Sổ đỏ riêng','Thổ cư 100%','Đường 12m','F0 CĐT'],features:['Thổ cư 100%','Đường 12m','Hạ tầng hoàn chỉnh','Pháp lý sạch','Gần QL50','Sổ hồng riêng'],agent:'Đỗ Mạnh Cường',phone:'0977 678 901',masked:'0977 678 ***',initials:'DC',agentType:'CĐT',verified:true,time:'4 giờ',imgs:['https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1628744448840-55bdb2497bd4?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=800&h=500&fit=crop'],priceHistory:[{date:'T4/2024',p:'2.5 tỷ'},{date:'T10/2024',p:'2.8 tỷ'},{date:'T3/2025',p:'3.0 tỷ'}]},
+  {id:6,badge:'HOT',bc:'b-hot',tier:'red',type:'Căn hộ chung cư',title:'Căn hộ studio 1PN Masteri Thảo Điền Q2 view Landmark81 – tầng cao cực đẹp, full nội thất 5*',price:3.6,priceDisplay:'3,6 tỷ',area:42,floor:25,bed:1,bath:1,dir:'Nam',city:'hcm',dist:'q2',loc:'Masteri Thảo Điền, Quận 2, HCM',desc:'Studio tầng 25 view thành phố và Landmark 81 cực kỳ ấn tượng. Full nội thất châu Âu cao cấp. Tiện ích đẳng cấp: hồ bơi vô cực tầng mái, gym, spa, cafe, siêu thị. Vị trí trung tâm khu Thảo Điền sầm uất, kết nối metro, cầu Sài Gòn.',tags:['View Landmark81','Full nội thất','Hồ bơi vô cực','Tầng 25'],features:['View Landmark81','Hồ bơi tầng mái','Gym spa','Metro gần','Siêu thị','24/7 security'],agent:'Ngô Thanh Bình',phone:'0918 789 012',masked:'0918 789 ***',initials:'NB',agentType:'Môi giới',verified:true,time:'5 giờ',imgs:['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&h=500&fit=crop'],priceHistory:[{date:'T5/2024',p:'3.2 tỷ'},{date:'T11/2024',p:'3.4 tỷ'},{date:'T3/2025',p:'3.6 tỷ'}]},
+  {id:7,badge:'VIP1',bc:'b-vip1',tier:'',type:'Nhà riêng',title:'Nhà hẻm 8m Trần Hưng Đạo Q5 – 3.5x12m 3 tầng đúc, 3PN, sổ hồng chính chủ, gần trung tâm Q1',price:8.9,priceDisplay:'8,9 tỷ',area:42,floor:3,bed:3,bath:3,dir:'Đông Bắc',city:'hcm',dist:'',loc:'Trần Hưng Đạo, Quận 5, HCM',desc:'Nhà 3 tầng đúc kiên cố, thiết kế hiện đại thông thoáng. Hẻm 8m xe hơi đậu ngay trước cửa. Gần chợ An Đông, bệnh viện Trưng Vương, trường ĐH Sư Phạm. 5 phút ra Q1. Pháp lý hoàn toàn sạch, sổ hồng chính chủ.',tags:['Sổ hồng','Hẻm 8m','Q5','3 tầng'],features:['Hẻm 8m rộng rãi','Sổ hồng chính chủ','Gần bệnh viện','Gần Q1','Nhà mới xây','Ô tô vào nhà'],agent:'Trần Quốc Khánh',phone:'0946 890 123',masked:'0946 890 ***',initials:'TK',agentType:'Chính chủ',verified:true,time:'6 giờ',imgs:['https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&h=500&fit=crop'],priceHistory:[{date:'T8/2024',p:'8.2 tỷ'},{date:'T1/2025',p:'8.6 tỷ'},{date:'T3/2025',p:'8.9 tỷ'}]},
+  {id:8,badge:'VIP GOLD',bc:'b-vip',tier:'gold',type:'Shophouse',title:'Shophouse The Grand Manhattan Q1 – 110m² 5 tầng mặt tiền đường lớn, đầu tư sinh lời cao',price:45,priceDisplay:'45 tỷ',area:110,floor:5,bed:4,bath:5,dir:'Đông',city:'hcm',dist:'q1',loc:'The Grand Manhattan, Quận 1, HCM',desc:'Shophouse 5 tầng mặt tiền đường lớn trung tâm Quận 1. Thiết kế thương mại cao cấp, tầng trệt kinh doanh, 4 tầng cho thuê hoặc để ở. Pháp lý đầy đủ, chính chủ bán. Tỷ suất lợi nhuận cho thuê 6-8%/năm.',tags:['Mặt tiền Q1','Shophouse','5 tầng','Đầu tư'],features:['Mặt tiền đường lớn','Cho thuê 6-8%/năm','Thang máy','Thiết kế cao cấp','Pháp lý đầy đủ','Trung tâm Q1'],agent:'Vũ Hải Anh',phone:'0902 901 234',masked:'0902 901 ***',initials:'VA',agentType:'Chính chủ',verified:true,time:'8 giờ',imgs:['https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=800&h=500&fit=crop'],priceHistory:[{date:'T1/2024',p:'40 tỷ'},{date:'T8/2024',p:'42 tỷ'},{date:'T3/2025',p:'45 tỷ'}]},
+  {id:9,badge:'Mới',bc:'b-new',tier:'',type:'Căn hộ chung cư',title:'Căn hộ 3PN 2WC Vinhomes Grand Park Q9 – tòa S6 tầng đẹp, view công viên, giá tốt nhất thị trường',price:4.1,priceDisplay:'4,1 tỷ',area:86,floor:12,bed:3,bath:2,dir:'Tây Nam',city:'hcm',dist:'',loc:'Vinhomes Grand Park, Quận 9, HCM',desc:'Căn hộ 3 phòng ngủ 2WC diện tích 86m² tòa S6 tầng 12. View trực diện công viên nội khu cực xanh mát. Bàn giao thô, mua về tự trang trí theo ý muốn. Tiện ích: 5 công viên, trường học, bệnh viện, Vincom Mega Mall.',tags:['3PN','View công viên','Bàn giao thô','Tầng 12'],features:['View công viên xanh','5 công viên nội khu','Trường học nội khu','Bệnh viện','Vincom Mega Mall','Metro số 1'],agent:'Hoàng Minh Tâm',phone:'0933 012 345',masked:'0933 012 ***',initials:'HT',agentType:'Môi giới',verified:false,time:'10 giờ',imgs:['https://images.unsplash.com/photo-1551361415-69c87624334f?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=500&fit=crop'],priceHistory:[{date:'T9/2024',p:'3.8 tỷ'},{date:'T12/2024',p:'3.95 tỷ'},{date:'T3/2025',p:'4.1 tỷ'}]},
+  {id:10,badge:'HOT',bc:'b-hot',tier:'red',type:'Nhà mặt tiền',title:'Nhà mặt tiền Cộng Hòa Tân Bình 5x20m – 2 mặt tiền, tiện kinh doanh, gần sân bay Tân Sơn Nhất',price:19.5,priceDisplay:'19,5 tỷ',area:100,floor:4,bed:4,bath:4,dir:'Bắc',city:'hcm',dist:'tan-binh',loc:'Cộng Hòa, Tân Bình, HCM',desc:'Nhà 2 mặt tiền vị trí đắc địa gần sân bay Tân Sơn Nhất. Đường Cộng Hòa sầm uất, kinh doanh mọi ngành nghề. 1 trệt 3 lầu, hiện đang cho thuê 45tr/tháng. Khu vực tập trung nhiều khách sạn, văn phòng.',tags:['2 Mặt tiền','Gần sân bay','Cho thuê 45tr','4 tầng'],features:['2 mặt tiền','Gần sân bay 500m','Cho thuê 45tr/tháng','Khu kinh doanh','Pháp lý sạch','Sổ hồng lâu dài'],agent:'Mai Thị Xuân',phone:'0921 123 456',masked:'0921 123 ***',initials:'MX',agentType:'Chính chủ',verified:true,time:'12 giờ',imgs:['https://images.unsplash.com/photo-1467803738586-46b7eb7b16a1?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1465301055284-72b9b29e5b93?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=800&h=500&fit=crop'],priceHistory:[{date:'T7/2024',p:'17.5 tỷ'},{date:'T1/2025',p:'18.8 tỷ'},{date:'T3/2025',p:'19.5 tỷ'}]},
+  {id:11,badge:'VIP1',bc:'b-vip1',tier:'',type:'Biệt thự, villa',title:'Villa mini góc 2 mặt tiền đường Nguyễn Văn Hưởng Thảo Điền Q2 – 220m² 5PN thiết kế kiến trúc',price:18.8,priceDisplay:'18,8 tỷ',area:220,floor:3,bed:5,bath:6,dir:'Đông Nam',city:'hcm',dist:'q2',loc:'Nguyễn Văn Hưởng, Thảo Điền, Q2, HCM',desc:'Villa mini góc 2 mặt tiền tại khu cao cấp Thảo Điền. Thiết kế kiến trúc đương đại, sân vườn cây xanh 80m². 5 phòng ngủ đều có WC riêng. Khu vực tập trung nhiều trường quốc tế, nhà hàng 5 sao, cộng đồng expat.',tags:['2 Mặt tiền','Thảo Điền','Sân vườn','Gần trường quốc tế'],features:['2 mặt tiền góc','Sân vườn 80m²','Khu expat','Trường quốc tế gần','Nhà hàng 5 sao','Cộng đồng văn minh'],agent:'Richard Nguyễn',phone:'0909 234 567',masked:'0909 234 ***',initials:'RN',agentType:'Môi giới',verified:true,time:'1 ngày',imgs:['https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=800&h=500&fit=crop'],priceHistory:[{date:'T8/2024',p:'17 tỷ'},{date:'T12/2024',p:'18 tỷ'},{date:'T3/2025',p:'18.8 tỷ'}]},
+  {id:12,badge:'Mới',bc:'b-new',tier:'',type:'Đất nền',title:'Đất nền thổ cư 200m² mặt tiền đường 12m Thủ Đức – thích hợp xây nhà ở hoặc kinh doanh',price:5.5,priceDisplay:'5,5 tỷ',area:200,floor:0,bed:0,bath:0,dir:'',city:'hcm',dist:'q2',loc:'Thủ Đức, Hồ Chí Minh',desc:'Lô đất thổ cư 200m² mặt tiền đường nhựa 12m khu dân cư hiện hữu Thủ Đức. Pháp lý hoàn chỉnh, sổ đỏ lâu dài. Xây dựng tự do, thích hợp làm nhà ở, kinh doanh, cho thuê. Khu vực phát triển mạnh, hạ tầng đang đầu tư.',tags:['Mặt tiền 12m','Thổ cư','Sổ đỏ lâu dài','Thủ Đức'],features:['Mặt tiền đường lớn','Thổ cư 100%','Sổ đỏ lâu dài','Hạ tầng mới','Khu phát triển','Xây dựng tự do'],agent:'Lý Văn Phúc',phone:'0955 345 678',masked:'0955 345 ***',initials:'LP',agentType:'Chính chủ',verified:false,time:'1 ngày',imgs:['https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=800&h=500&fit=crop'],priceHistory:[{date:'T6/2024',p:'4.8 tỷ'},{date:'T12/2024',p:'5.2 tỷ'},{date:'T3/2025',p:'5.5 tỷ'}]},
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+let state = {
+  viewMode:'list',
+  page:1,
+  perPage:10,
+  sort:'default',
+  filters:{
+    types:[],
+    priceMin:null,priceMax:null,
+    areaMin:null,areaMax:null,
+    bed:null,
+    city:'',dist:''
+  },
+  activeProps:[...PROPERTIES],
+  currentDetail:null,
+  lbImages:[],lbIdx:0
+};
+
+// ============================================================
+//  LOCAL STORAGE AUTH
+// ============================================================
+const LS_USERS='mrdori_users';
+const LS_SESSION='mrdori_session';
+const LS_SAVED='mrdori_saved';
+
+function getUsers(){return JSON.parse(localStorage.getItem(LS_USERS)||'[]')}
+function saveUsers(u){localStorage.setItem(LS_USERS,JSON.stringify(u))}
+function getSession(){try{return JSON.parse(localStorage.getItem(LS_SESSION))}catch{return null}}
+function setSession(u){localStorage.setItem(LS_SESSION,JSON.stringify(u))}
+function clearSession(){localStorage.removeItem(LS_SESSION)}
+function getSaved(){
+  const s=getSession();
+  if(!s)return[];
+  const saved=JSON.parse(localStorage.getItem(LS_SAVED)||'{}');
+  return saved[s.email]||[];
+}
+function setSaved(arr){
+  const s=getSession();if(!s)return;
+  const saved=JSON.parse(localStorage.getItem(LS_SAVED)||'{}');
+  saved[s.email]=arr;
+  localStorage.setItem(LS_SAVED,JSON.stringify(saved));
+}
+function isSaved(id){return getSaved().includes(id)}
+
+function renderAuthUI(){
+  const s=getSession();
+  const ab=document.getElementById('authBtns');
+  const umw=document.getElementById('userMenuWrap');
+  if(s){
+    ab.style.display='none';
+    umw.style.display='';
+    const initials=(s.firstName?s.firstName[0]:s.email[0]).toUpperCase();
+    document.getElementById('userAvatarHead').textContent=initials;
+    document.getElementById('userNameHead').textContent=s.firstName||s.email.split('@')[0];
+    document.getElementById('ddFullName').textContent=(s.firstName&&s.lastName)?s.firstName+' '+s.lastName:s.email;
+    document.getElementById('ddEmail').textContent=s.email;
+    const saved=getSaved();
+    const badge=document.getElementById('savedBadge');
+    badge.textContent=saved.length||'';
+    badge.style.display=saved.length?'':'none';
+  } else {
+    ab.style.display='';
+    umw.style.display='none';
+  }
+}
+
+function doLogin(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const pass=document.getElementById('loginPass').value;
+  if(!email){return toast('Vui lòng nhập email/SĐT','error')}
+  if(!pass||pass.length<6){return toast('Mật khẩu tối thiểu 6 ký tự','error')}
+  const users=getUsers();
+  const user=users.find(u=>u.email===email||u.phone===email);
+  if(user){
+    if(user.password!==pass){return toast('Mật khẩu không đúng','error')}
+    setSession(user);
+    closeModal('authModal');
+    renderAuthUI();
+    toast(`Chào mừng ${user.firstName||user.email.split('@')[0]} trở lại! 👋`,'success');
+    renderCards();
+  } else {
+    // Auto-create demo account
+    const newUser={email,password:pass,firstName:email.split('@')[0],lastName:'',phone:'',role:'buyer',createdAt:Date.now()};
+    users.push(newUser);saveUsers(users);
+    setSession(newUser);
+    closeModal('authModal');
+    renderAuthUI();
+    toast(`Đăng nhập thành công! Chào ${newUser.firstName} 🎉`,'success');
+    renderCards();
+  }
+}
+
+function doRegister(){
+  const last=document.getElementById('regLast').value.trim();
+  const first=document.getElementById('regFirst').value.trim();
+  const email=document.getElementById('regEmail').value.trim();
+  const phone=document.getElementById('regPhone').value.trim();
+  const pass=document.getElementById('regPass').value;
+  const role=document.getElementById('regRole').value;
+  const agree=document.getElementById('agreeTerms').checked;
+  if(!first){return toast('Vui lòng nhập tên','error')}
+  if(!email||!email.includes('@')){return toast('Email không hợp lệ','error')}
+  if(!pass||pass.length<8){return toast('Mật khẩu tối thiểu 8 ký tự','error')}
+  if(!agree){return toast('Vui lòng đồng ý điều khoản dịch vụ','error')}
+  const users=getUsers();
+  if(users.find(u=>u.email===email)){return toast('Email này đã được đăng ký','error')}
+  const newUser={email,password:pass,firstName:first,lastName:last,phone,role,createdAt:Date.now()};
+  users.push(newUser);saveUsers(users);
+  setSession(newUser);
+  closeModal('authModal');
+  renderAuthUI();
+  toast(`Đăng ký thành công! Chào mừng ${first} 🎉`,'success');
+  renderCards();
+}
+
+function socialLogin(provider){
+  const mockUser={email:`demo_${provider.toLowerCase()}@mrdori.vn`,firstName:'Demo',lastName:provider,phone:'',role:'buyer',createdAt:Date.now(),password:''};
+  setSession(mockUser);
+  closeModal('authModal');
+  renderAuthUI();
+  toast(`Đăng nhập ${provider} thành công! 🎉`,'success');
+  renderCards();
+}
+
+function doLogout(){
+  clearSession();
+  document.getElementById('userDropdown').classList.remove('open');
+  renderAuthUI();
+  toast('Đã đăng xuất. Hẹn gặp lại! 👋','info');
+  renderCards();
+}
+
+function toggleUserMenu(){
+  document.getElementById('userDropdown').classList.toggle('open');
+}
+
+function openSaved(){
+  document.getElementById('userDropdown').classList.remove('open');
+  const saved=getSaved();
+  if(!saved.length){return toast('Bạn chưa lưu tin rao nào','info')}
+  state.activeProps=PROPERTIES.filter(p=>saved.includes(p.id));
+  document.getElementById('countNum').textContent=state.activeProps.length;
+  state.page=1;
+  renderCards();
+  document.querySelector('.breadcrumb #breadcurrent').textContent='Tin đã lưu';
+  window.scrollTo({top:300,behavior:'smooth'});
+  toast(`Đang hiển thị ${saved.length} tin đã lưu ❤️`,'success');
+}
+
+function checkPostListing(){
+  if(!getSession()){
+    toast('Vui lòng đăng nhập để đăng tin','error');
+    openModal('authModal');
+    return;
+  }
+  openModal('postModal');
+}
+
+function submitPost(){
+  const title=document.getElementById('postTitle').value.trim();
+  if(!title){return toast('Vui lòng nhập tiêu đề tin đăng','error')}
+  closeModal('postModal');
+  toast('Tin đăng đã được gửi duyệt! Sẽ hiển thị sau 15 phút ✅','success');
+}
+
+// ============================================================
+//  FILTERS & RENDER
+// ============================================================
+let filterState={types:[],priceMin:null,priceMax:null,areaMin:null,areaMax:null,bed:null};
+
+function buildTypeChecks(){
+  const wrap=document.getElementById('typeChecks');
+  wrap.innerHTML=PROPERTY_TYPES.map((t,i)=>{
+    const count=i===0?PROPERTIES.length:PROPERTIES.filter(p=>p.type===t).length;
+    if(!count&&i>0)return'';
+    return`<label class="sb-check"><input type="checkbox" value="${t}" onchange="typeCheckChange()"><span class="lbl">${t}</span><span class="cnt">(${count})</span></label>`;
+  }).join('');
+}
+
+function typeCheckChange(){
+  const checks=document.querySelectorAll('#typeChecks input[type=checkbox]:checked');
+  filterState.types=Array.from(checks).map(c=>c.value).filter(v=>v!=='Tất cả');
+  applyFilters();
+}
+
+function setPricePill(el,min,max){
+  document.querySelectorAll('#pricePillsBar .sb-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  filterState.priceMin=min;filterState.priceMax=max;
+  document.getElementById('sbPriceMin').value=min||'';
+  document.getElementById('sbPriceMax').value=max===999?'':max;
+  applyFilters();
+}
+
+function setAreaPill(el,min,max){
+  document.querySelectorAll('#areaPillsBar .sb-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  filterState.areaMin=min;filterState.areaMax=max;
+  document.getElementById('sbAreaMin').value=min||'';
+  document.getElementById('sbAreaMax').value=max===9999?'':max;
+  applyFilters();
+}
+
+function setBedPill(el,n){
+  const already=el.classList.contains('active');
+  document.querySelectorAll('#bedroomPillsBar .sb-pill').forEach(p=>p.classList.remove('active'));
+  if(!already){el.classList.add('active');filterState.bed=n;}
+  else filterState.bed=null;
+  applyFilters();
+}
+
+function togglePill(el){el.classList.toggle('active')}
+
+function applyFilters(){
+  const pMin=parseFloat(document.getElementById('sbPriceMin').value)||filterState.priceMin;
+  const pMax=parseFloat(document.getElementById('sbPriceMax').value)||filterState.priceMax;
+  const aMin=parseFloat(document.getElementById('sbAreaMin').value)||filterState.areaMin;
+  const aMax=parseFloat(document.getElementById('sbAreaMax').value)||filterState.areaMax;
+  const city=document.getElementById('sbCity').value;
+  const dist=document.getElementById('sbDist').value;
+
+  state.activeProps=PROPERTIES.filter(p=>{
+    if(filterState.types.length&&!filterState.types.includes(p.type))return false;
+    if(pMin!==null&&p.price<pMin)return false;
+    if(pMax!==null&&p.price>pMax)return false;
+    if(aMin!==null&&p.area<aMin)return false;
+    if(aMax!==null&&p.area>aMax)return false;
+    if(filterState.bed&&p.bed<filterState.bed)return false;
+    if(city&&p.city!==city)return false;
+    if(dist&&p.dist!==dist)return false;
+    // search
+    if(state.searchQ){
+      const q=state.searchQ.toLowerCase();
+      if(!p.title.toLowerCase().includes(q)&&!p.loc.toLowerCase().includes(q)&&!p.type.toLowerCase().includes(q)&&!p.desc.toLowerCase().includes(q))return false;
+    }
+    return true;
+  });
+
+  sortData();
+  state.page=1;
+  document.getElementById('countNum').textContent=state.activeProps.length.toLocaleString('vi');
+  document.querySelector('.breadcrumb #breadcurrent').textContent='Nhà đất bán';
+  renderCards();
+}
+
+function sortChange(){
+  state.sort=document.getElementById('sortSel').value;
+  sortData();
+  renderCards();
+}
+
+function sortData(){
+  switch(state.sort){
+    case'newest':state.activeProps=[...state.activeProps].sort((a,b)=>b.id-a.id);break;
+    case'price_asc':state.activeProps=[...state.activeProps].sort((a,b)=>a.price-b.price);break;
+    case'price_desc':state.activeProps=[...state.activeProps].sort((a,b)=>b.price-a.price);break;
+    case'area_asc':state.activeProps=[...state.activeProps].sort((a,b)=>a.area-b.area);break;
+    case'area_desc':state.activeProps=[...state.activeProps].sort((a,b)=>b.area-a.area);break;
+    default:break;
+  }
+}
+
+// ============================================================
+//  RENDER CARDS
+// ============================================================
+function renderCards(){
+  const grid=document.getElementById('cardsGrid');
+  const start=(state.page-1)*state.perPage;
+  const slice=state.activeProps.slice(start,start+state.perPage);
+  
+  if(!slice.length){
+    grid.innerHTML=`<div class="empty-state">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg>
+      <h3>Không tìm thấy bất động sản</h3>
+      <p>Hãy thử điều chỉnh bộ lọc hoặc thay đổi từ khóa tìm kiếm</p>
+    </div>`;
+    renderPagination();
+    return;
+  }
+  
+  grid.innerHTML=slice.map(p=>renderCard(p)).join('');
+  renderPagination();
+  document.getElementById('countNum').textContent=state.activeProps.length.toLocaleString('vi');
+}
+
+function renderCard(p){
+  const saved=isSaved(p.id);
+  const pricePerM2=p.area>0?(p.price*1000/p.area).toFixed(0)+' tr/m²':'';
+  const specHtml=p.bed?`
+    <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M2 4v16M2 12h20M22 4v16"/><path d="M6 12v4M10 12v4M14 12v4M18 12v4"/></svg> ${p.bed} PN</div>
+    <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 20h18v-4M5 16V7a2 2 0 012-2h3"/><circle cx="12" cy="10" r="3"/></svg> ${p.bath} WC</div>
+    ${p.floor?`<div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8M19 21V8M9 21V12M15 21V12"/></svg> ${p.floor} tầng</div>`:''}
+  `:'';
+  return`
+  <div class="pcard ${p.tier==='gold'?'vip-gold':p.tier==='red'?'vip-red':''}" id="pc${p.id}" data-id="${p.id}">
+    <div class="card-media">
+      <img src="${p.imgs[0]}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=250&fit=crop'">
+      <span class="card-badge ${p.bc}">${p.badge}</span>
+      <div class="card-imgcount"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg> ${p.imgs.length}</div>
+      <button class="card-save-btn ${saved?'saved':''}" data-id="${p.id}" onclick="toggleSave(event,${p.id})">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" ${saved?'fill="#fff"':''}/>
+        </svg>
+      </button>
+    </div>
+    <div class="card-body" onclick="openDetail(${p.id})">
+      <div class="card-title">${p.title}</div>
+      <div class="card-price-row">
+        <span class="card-price">${p.priceDisplay}</span>
+        <span class="card-dot">•</span>
+        <span class="card-area"><svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg> ${p.area}m²</span>
+        ${pricePerM2?`<span class="card-price-m2">${pricePerM2}</span>`:''}
+      </div>
+      ${specHtml?`<div class="card-specs">${specHtml}</div>`:''}
+      <div class="card-location">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${p.loc}
+      </div>
+      <div class="card-desc">${p.desc}</div>
+      <div class="card-tags">
+        ${p.tags.map(t=>`<span class="ctag">${t}</span>`).join('')}
+        ${p.verified?'<span class="ctag green">✓ Đã xác thực</span>':''}
+      </div>
+      <div class="card-foot">
+        <div class="agent-row">
+          <div class="agent-av">${p.initials}</div>
+          <div class="agent-info">
+            <div class="agent-name">${p.agent} ${p.agentType==='Chính chủ'?'<span class="ctag green" style="font-size:10px;padding:1px 6px">Chính chủ</span>':''}</div>
+            <div class="agent-sub">${p.agentType} • ${p.time} trước</div>
+          </div>
+        </div>
+        <div class="card-actions" onclick="event.stopPropagation()">
+          <button class="btn-call" onclick="revealPhone(${p.id})">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            ${p.masked}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function revealPhone(id){
+  const p=PROPERTIES.find(x=>x.id===id);if(!p)return;
+  toast(`📞 ${p.phone} – ${p.agent}`,'success');
+}
+
+function toggleSave(e,id){
+  e.stopPropagation();
+  if(!getSession()){
+    toast('Đăng nhập để lưu tin rao ❤️','error');
+    openModal('authModal');return;
+  }
+  const saved=getSaved();
+  const btn=document.querySelector(`.card-save-btn[data-id="${id}"]`);
+  if(saved.includes(id)){
+    const ns=saved.filter(x=>x!==id);setSaved(ns);
+    if(btn){btn.classList.remove('saved');btn.querySelector('path').removeAttribute('fill');}
+    toast('Đã bỏ lưu tin rao','info');
+  } else {
+    saved.push(id);setSaved(saved);
+    if(btn){btn.classList.add('saved');btn.querySelector('path').setAttribute('fill','#fff');}
+    toast('Đã lưu tin rao! ❤️','success');
+  }
+  renderAuthUI();
+}
+
+// ============================================================
+//  PAGINATION
+// ============================================================
+function renderPagination(){
+  const pag=document.getElementById('pagEl');
+  const total=Math.ceil(state.activeProps.length/state.perPage);
+  if(total<=1){pag.innerHTML='';return;}
+  let html=`<button class="pag-btn" onclick="goPage(${state.page-1})" ${state.page===1?'disabled style="opacity:.4;cursor:not-allowed"':''}>‹</button>`;
+  for(let i=1;i<=total;i++){
+    if(i===1||i===total||Math.abs(i-state.page)<=1){
+      html+=`<button class="pag-btn ${i===state.page?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    } else if(i===state.page-2||i===state.page+2){
+      html+=`<button class="pag-btn dots">…</button>`;
+    }
+  }
+  html+=`<button class="pag-btn" onclick="goPage(${state.page+1})" ${state.page===total?'disabled style="opacity:.4;cursor:not-allowed"':''}>›</button>`;
+  html+=`<span class="pag-info">Trang ${state.page}/${total}</span>`;
+  pag.innerHTML=html;
+}
+
+function goPage(p){
+  const total=Math.ceil(state.activeProps.length/state.perPage);
+  if(p<1||p>total)return;
+  state.page=p;
+  renderCards();
+  window.scrollTo({top:document.getElementById('cardsGrid').offsetTop-160,behavior:'smooth'});
+}
+
+// ============================================================
+//  PROPERTY DETAIL
+// ============================================================
+function openDetail(id){
+  const p=PROPERTIES.find(x=>x.id===id);if(!p)return;
+  state.currentDetail=p;
+  state.lbImages=p.imgs;state.lbIdx=0;
+  const saved=isSaved(p.id);
+  const pricePerM2=p.area>0?(p.price*1000/p.area).toFixed(0):'—';
+  document.getElementById('detailBox').innerHTML=`
+    <div class="detail-header">
+      <div class="detail-title">
+        <h2>${p.title}</h2>
+        <div class="meta">
+          <span class="card-badge ${p.bc}" style="position:static">${p.badge}</span>
+          <span style="font-size:13px;color:var(--gray-500);display:flex;align-items:center;gap:4px">
+            <svg style="width:12px;height:12px;fill:var(--red)" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${p.loc}
+          </span>
+          ${p.verified?'<span class="card-verified">✓ Đã xác thực</span>':''}
+          <span style="font-size:12px;color:var(--gray-400)">Đăng ${p.time} trước</span>
+        </div>
+      </div>
+      <button class="detail-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="detail-cols">
+      <div class="detail-main">
+        <!-- GALLERY -->
+        <div class="detail-gallery">
+          <div class="gal-main" onclick="openLightbox(0)">
+            <img id="galMainImg" src="${p.imgs[0]}" alt="${p.title}" onerror="this.src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800'">
+            <div class="count-badge">📷 ${p.imgs.length} ảnh · Click để phóng to</div>
+          </div>
+          <div class="gal-thumbs">
+            ${p.imgs.map((img,i)=>`<div class="gal-thumb ${i===0?'active':''}" onclick="switchGalImg(${i},'${img}',this)"><img src="${img}" alt="" onerror="this.src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200'"></div>`).join('')}
+          </div>
+        </div>
+        <!-- SPECS -->
+        <div class="detail-specs">
+          <div class="dspec"><div class="dl">Mức giá</div><div class="dv big">${p.priceDisplay}</div></div>
+          <div class="dspec"><div class="dl">Diện tích</div><div class="dv">${p.area} m²</div></div>
+          <div class="dspec"><div class="dl">Đơn giá</div><div class="dv">${pricePerM2} tr/m²</div></div>
+          ${p.bed?`<div class="dspec"><div class="dl">Phòng ngủ</div><div class="dv">${p.bed} phòng</div></div>`:''}
+          ${p.bath?`<div class="dspec"><div class="dl">Phòng tắm</div><div class="dv">${p.bath} phòng</div></div>`:''}
+          ${p.floor?`<div class="dspec"><div class="dl">Số tầng</div><div class="dv">${p.floor} tầng</div></div>`:''}
+          <div class="dspec"><div class="dl">Loại BĐS</div><div class="dv">${p.type}</div></div>
+          ${p.dir?`<div class="dspec"><div class="dl">Hướng</div><div class="dv">${p.dir}</div></div>`:''}
+          <div class="dspec"><div class="dl">Pháp lý</div><div class="dv" style="color:var(--green)">Sổ hồng/đỏ</div></div>
+        </div>
+        <!-- DESC -->
+        <div class="detail-section">
+          <h3>Thông tin mô tả</h3>
+          <div class="desc-text">${p.desc}</div>
+        </div>
+        <!-- FEATURES -->
+        <div class="detail-section">
+          <h3>Đặc điểm nổi bật</h3>
+          <div class="detail-features">
+            ${p.features.map(f=>`<div class="feat-chip"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> ${f}</div>`).join('')}
+          </div>
+        </div>
+        <!-- TAGS -->
+        <div class="detail-section">
+          <h3>Từ khóa</h3>
+          <div class="card-tags">${p.tags.map(t=>`<span class="ctag">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+      <div class="detail-side">
+        <!-- CONTACT CARD -->
+        <div class="contact-card">
+          <div class="contact-card-head">
+            <div class="agent-big-av">${p.initials}</div>
+            <div class="agent-big-info">
+              <h4>${p.agent}</h4>
+              <div class="type">${p.agentType}</div>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="contact-card-body">
+            <div class="masked-phone" onclick="fullPhone(${p.id})">
+              <span class="ph" id="ph${p.id}">${p.masked}</span>
+              <span class="reveal">Bấm để hiện số</span>
+            </div>
+            <button class="btn-phone-big" onclick="callAgent(${p.id})">
+              📞 Gọi điện ngay
+            </button>
+            <button class="btn-zalo" onclick="toast('Đang mở Zalo...','success')">
+              💬 Chat Zalo
+            </button>
+            <button class="btn-msg" onclick="openMessage(${p.id})">
+              ✉️ Gửi tin nhắn
+            </button>
+          </div>
+        </div>
+        <!-- SAVE BTN -->
+        <button id="detailSaveBtn" onclick="toggleSaveDetail(${p.id})" style="width:100%;padding:11px;border:2px solid ${saved?'var(--red)':'var(--gray-200)'};background:${saved?'var(--red-light)':'transparent'};color:${saved?'var(--red)':'var(--gray-700)'};border-radius:var(--radius-md);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s;margin-bottom:14px">
+          ${saved?'❤️ Đã lưu':'🤍 Lưu tin rao'}
+        </button>
+        <!-- MAP -->
+        <div class="mini-map" onclick="toast('🗺️ Đang mở Google Maps...','info')">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Xem vị trí trên bản đồ</span>
+          <div class="map-label">${p.loc}</div>
+        </div>
+        <!-- PRICE HISTORY -->
+        <div class="price-history">
+          <h5>📈 Lịch sử giá</h5>
+          ${p.priceHistory.map(h=>`<div class="ph-item"><span class="ph-date">${h.date}</span><span class="ph-price">${h.p}</span></div>`).join('')}
+        </div>
+        <!-- SHARE -->
+        <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button onclick="shareProperty(${p.id})" style="padding:9px;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-700);display:flex;align-items:center;justify-content:center;gap:6px">
+            🔗 Chia sẻ
+          </button>
+          <button onclick="reportProperty(${p.id})" style="padding:9px;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);background:#fff;font-size:13px;cursor:pointer;color:var(--gray-500);display:flex;align-items:center;justify-content:center;gap:6px">
+            🚩 Báo cáo
+          </button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeDetail(){
+  document.getElementById('detailOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function switchGalImg(idx,src,el){
+  state.lbIdx=idx;
+  document.getElementById('galMainImg').src=src;
+  document.querySelectorAll('.gal-thumb').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function fullPhone(id){
+  const p=PROPERTIES.find(x=>x.id===id);if(!p)return;
+  const el=document.getElementById(`ph${id}`);
+  if(el)el.textContent=p.phone;
+  toast(`📞 ${p.phone}`,'success');
+}
+
+function callAgent(id){
+  const p=PROPERTIES.find(x=>x.id===id);if(!p)return;
+  fullPhone(id);
+  toast(`Đang gọi ${p.agent}: ${p.phone} 📞`,'success');
+}
+
+function toggleSaveDetail(id){
+  if(!getSession()){toast('Đăng nhập để lưu tin rao','error');openModal('authModal');return;}
+  const saved=getSaved();
+  const btn=document.getElementById('detailSaveBtn');
+  if(saved.includes(id)){
+    setSaved(saved.filter(x=>x!==id));
+    if(btn){btn.innerHTML='🤍 Lưu tin rao';btn.style.borderColor='var(--gray-200)';btn.style.background='transparent';btn.style.color='var(--gray-700)';}
+    toast('Đã bỏ lưu tin rao','info');
+  } else {
+    saved.push(id);setSaved(saved);
+    if(btn){btn.innerHTML='❤️ Đã lưu';btn.style.borderColor='var(--red)';btn.style.background='var(--red-light)';btn.style.color='var(--red)';}
+    toast('Đã lưu tin rao! ❤️','success');
+  }
+  renderAuthUI();
+  const cardBtn=document.querySelector(`.card-save-btn[data-id="${id}"]`);
+  if(cardBtn){
+    const nowSaved=isSaved(id);
+    cardBtn.classList.toggle('saved',nowSaved);
+    const path=cardBtn.querySelector('path');
+    if(path){if(nowSaved)path.setAttribute('fill','#fff');else path.removeAttribute('fill');}
+  }
+}
+
+function openMessage(id){
+  const p=PROPERTIES.find(x=>x.id===id);if(!p)return;
+  toast(`Gửi tin nhắn đến ${p.agent}: ${p.phone}`,'info');
+}
+
+function shareProperty(id){
+  const url=`${location.origin}${location.pathname}?id=${id}`;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>toast('Đã sao chép link chia sẻ 🔗','success'));
+  } else {
+    toast('Link chia sẻ: '+url,'info');
+  }
+}
+
+function reportProperty(id){
+  toast('Đã gửi báo cáo. Chúng tôi sẽ xem xét trong 24h','info');
+}
+
+// ============================================================
+//  LIGHTBOX
+// ============================================================
+function openLightbox(idx){
+  state.lbIdx=idx;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+  updateLb();
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function updateLb(){
+  const imgs=state.lbImages;
+  document.getElementById('lbImg').src=imgs[state.lbIdx];
+  document.getElementById('lbCounter').textContent=`${state.lbIdx+1} / ${imgs.length}`;
+}
+function lbNav(dir){
+  const l=state.lbImages.length;
+  state.lbIdx=(state.lbIdx+dir+l)%l;
+  updateLb();
+}
+
+// ============================================================
+//  SEARCH
+// ============================================================
+state.searchQ='';
+function doSearch(){
+  const q=document.getElementById('mainSearchInput').value.trim();
+  state.searchQ=q;
+  applyFilters();
+  if(q)toast(`Tìm kiếm: "${q}" – ${state.activeProps.length} kết quả`,'info');
+}
+document.getElementById('mainSearchInput').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+
+// ============================================================
+//  NAVIGATION TABS
+// ============================================================
+function navSwitch(el,mode){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+  const labels={'sell':'Nhà đất bán','rent':'Nhà đất thuê','project':'Dự án','market':'Thị trường','valuation':'Định giá BĐS','news':'Tin tức','loan':'Vay mua nhà'};
+  document.getElementById('breadcurrent').textContent=labels[mode]||mode;
+  if(mode==='sell'){
+    state.activeProps=[...PROPERTIES];renderCards();
+  } else {
+    toast(`Chuyển sang: ${labels[mode]} 🔄`,'info');
+  }
+}
+
+// ============================================================
+//  SIDEBAR TOGGLE
+// ============================================================
+function sbToggle(head){
+  head.classList.toggle('open');
+  const body=head.nextElementSibling;
+  body.classList.toggle('hidden');
+}
+
+// ============================================================
+//  VIEW MODE
+// ============================================================
+function setView(mode){
+  state.viewMode=mode;
+  const grid=document.getElementById('cardsGrid');
+  document.getElementById('listBtn').classList.toggle('active',mode==='list');
+  document.getElementById('gridBtn').classList.toggle('active',mode==='grid');
+  grid.classList.toggle('grid',mode==='grid');
+}
+
+// ============================================================
+//  FILTER BAR (TOP)
+// ============================================================
+function buildFilterBar(){
+  document.getElementById('filterBar').innerHTML=`
+    <div class="fchip" onclick="toggleFdrop('fdType')" id="fcType">
+      <svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg>
+      <span id="fcTypeLabel">Loại nhà đất</span>
+      <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fdrop" id="fdType">
+        <div class="fdrop-item" onclick="setFcType('all','Loại nhà đất')">🏘 Tất cả loại</div>
+        <div class="fdrop-sep"></div>
+        ${['Nhà riêng','Căn hộ chung cư','Biệt thự, villa','Nhà mặt tiền','Đất nền','Shophouse','Nhà xưởng/kho'].map(t=>`<div class="fdrop-item" onclick="setFcType('${t}','${t}')">${t}</div>`).join('')}
+      </div>
+    </div>
+    <div class="fchip" onclick="toggleFdrop('fdCity')" id="fcCity">
+      📍 <span id="fcCityLabel">Khu vực</span>
+      <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fdrop" id="fdCity">
+        <div class="fdrop-head">Tỉnh / Thành phố</div>
+        ${[['','Toàn quốc'],['hcm','Hồ Chí Minh'],['hn','Hà Nội'],['dn','Đà Nẵng'],['hp','Hải Phòng'],['ct','Cần Thơ'],['bd','Bình Dương'],['kh','Khánh Hòa']].map(([v,l])=>`<div class="fdrop-item" onclick="setFcCity('${v}','${l}')">${l}</div>`).join('')}
+      </div>
+    </div>
+    <div class="fchip" onclick="toggleFdrop('fdPrice')" id="fcPrice">
+      💰 <span id="fcPriceLabel">Mức giá</span>
+      <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fdrop" id="fdPrice">
+        <div class="fdrop-head">Chọn mức giá</div>
+        <div class="fdrop-grid">
+          ${[['Dưới 500tr',0,0.5],['500tr – 1 tỷ',0.5,1],['1 – 2 tỷ',1,2],['2 – 5 tỷ',2,5],['5 – 10 tỷ',5,10],['Trên 10 tỷ',10,999]].map(([l,mn,mx])=>`<div class="fdrop-pill" onclick="setFcPrice(${mn},${mx},'${l}')">${l}</div>`).join('')}
+        </div>
+        <div class="fdrop-range">
+          <label>Hoặc nhập khoảng (tỷ đồng)</label>
+          <div class="range-row"><input type="number" id="fcPrMin" placeholder="Từ" step="0.5"><span>—</span><input type="number" id="fcPrMax" placeholder="Đến" step="0.5"></div>
+          <button class="apply-btn" onclick="applyFcPrice()">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+    <div class="fchip" onclick="toggleFdrop('fdArea')" id="fcArea">
+      📐 <span id="fcAreaLabel">Diện tích</span>
+      <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fdrop" id="fdArea">
+        <div class="fdrop-head">Chọn diện tích</div>
+        <div class="fdrop-grid">
+          ${[['Dưới 30m²',0,30],['30 – 60m²',30,60],['60 – 100m²',60,100],['100 – 200m²',100,200],['Trên 200m²',200,9999]].map(([l,mn,mx])=>`<div class="fdrop-pill" onclick="setFcArea(${mn},${mx},'${l}')">${l}</div>`).join('')}
+        </div>
+        <div class="fdrop-range">
+          <label>Hoặc nhập khoảng (m²)</label>
+          <div class="range-row"><input type="number" id="fcArMin" placeholder="Từ"><span>—</span><input type="number" id="fcArMax" placeholder="Đến"></div>
+          <button class="apply-btn" onclick="applyFcArea()">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+    <div class="fchip" onclick="toggleFdrop('fdBed')" id="fcBed">
+      🛏 <span id="fcBedLabel">Phòng ngủ</span>
+      <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fdrop" id="fdBed">
+        <div class="fdrop-head">Số phòng ngủ</div>
+        <div class="fdrop-grid">
+          ${[1,2,3,4].map(n=>`<div class="fdrop-pill" onclick="setFcBed(${n},'${n} PN')">${n} PN</div>`).join('')}
+          <div class="fdrop-pill" onclick="setFcBed(5,'5+ PN')">5+ PN</div>
+        </div>
+      </div>
+    </div>
+    <div class="f-divider"></div>
+    <span class="f-reset" onclick="resetAllFilters()">✕ Xóa bộ lọc</span>
+  `;
+}
+
+function toggleFdrop(id){
+  const all=document.querySelectorAll('.fdrop');
+  const target=document.getElementById(id);
+  const wasOpen=target.classList.contains('open');
+  all.forEach(d=>{d.classList.remove('open');d.parentElement.classList.remove('open');});
+  if(!wasOpen){target.classList.add('open');target.parentElement.classList.add('open');}
+}
+
+function setFcType(val,label){
+  document.getElementById('fcTypeLabel').textContent=label;
+  document.getElementById('fcType').classList.toggle('active',val!=='all');
+  filterState.types=val==='all'?[]:[val];
+  closeFdrops();applyFilters();
+}
+function setFcCity(val,label){
+  document.getElementById('fcCityLabel').textContent=label;
+  document.getElementById('fcCity').classList.toggle('active',val!=='');
+  document.getElementById('sbCity').value=val;
+  closeFdrops();applyFilters();
+}
+function setFcPrice(mn,mx,label){
+  document.getElementById('fcPriceLabel').textContent=label;
+  document.getElementById('fcPrice').classList.add('active');
+  filterState.priceMin=mn;filterState.priceMax=mx;
+  closeFdrops();applyFilters();
+}
+function applyFcPrice(){
+  const mn=parseFloat(document.getElementById('fcPrMin').value)||null;
+  const mx=parseFloat(document.getElementById('fcPrMax').value)||null;
+  filterState.priceMin=mn;filterState.priceMax=mx;
+  if(mn||mx)document.getElementById('fcPriceLabel').textContent=`${mn||''}–${mx||''} tỷ`;
+  document.getElementById('fcPrice').classList.toggle('active',!!(mn||mx));
+  closeFdrops();applyFilters();
+}
+function setFcArea(mn,mx,label){
+  document.getElementById('fcAreaLabel').textContent=label;
+  document.getElementById('fcArea').classList.add('active');
+  filterState.areaMin=mn;filterState.areaMax=mx;
+  closeFdrops();applyFilters();
+}
+function applyFcArea(){
+  const mn=parseFloat(document.getElementById('fcArMin').value)||null;
+  const mx=parseFloat(document.getElementById('fcArMax').value)||null;
+  filterState.areaMin=mn;filterState.areaMax=mx;
+  if(mn||mx)document.getElementById('fcAreaLabel').textContent=`${mn||''}–${mx||''} m²`;
+  document.getElementById('fcArea').classList.toggle('active',!!(mn||mx));
+  closeFdrops();applyFilters();
+}
+function setFcBed(n,label){
+  document.getElementById('fcBedLabel').textContent=label;
+  document.getElementById('fcBed').classList.add('active');
+  filterState.bed=n;
+  closeFdrops();applyFilters();
+}
+function closeFdrops(){
+  document.querySelectorAll('.fdrop').forEach(d=>d.classList.remove('open'));
+  document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('open'));
+}
+function resetAllFilters(){
+  filterState={types:[],priceMin:null,priceMax:null,areaMin:null,areaMax:null,bed:null};
+  state.searchQ='';
+  document.getElementById('mainSearchInput').value='';
+  document.getElementById('sbCity').value='';
+  document.getElementById('sbDist').value='';
+  document.getElementById('sbPriceMin').value='';
+  document.getElementById('sbPriceMax').value='';
+  document.getElementById('sbAreaMin').value='';
+  document.getElementById('sbAreaMax').value='';
+  document.querySelectorAll('.sb-pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#typeChecks input').forEach(c=>c.checked=false);
+  ['fcTypeLabel','fcCityLabel','fcPriceLabel','fcAreaLabel','fcBedLabel'].forEach((id,i)=>{
+    const labels=['Loại nhà đất','Khu vực','Mức giá','Diện tích','Phòng ngủ'];
+    const el=document.getElementById(id);if(el)el.textContent=labels[i];
+  });
+  document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));
+  state.activeProps=[...PROPERTIES];
+  state.page=1;
+  renderCards();
+  toast('Đã xóa tất cả bộ lọc','info');
+}
+
+// ============================================================
+//  MODALS
+// ============================================================
+function openModal(id){
+  const mid=id==='authModal'?'authModal':id==='postModal'?'postModal':id;
+  document.getElementById(mid).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  if(!document.querySelector('.modal-overlay.open,.detail-overlay.open,.lightbox.open'))
+    document.body.style.overflow='';
+}
+function switchAuthTab(tab){
+  document.getElementById('loginTab').classList.toggle('active',tab==='login');
+  document.getElementById('registerTab').classList.toggle('active',tab==='register');
+  document.getElementById('loginForm').style.display=tab==='login'?'':'none';
+  document.getElementById('registerForm').style.display=tab==='register'?'':'none';
+}
+
+function togglePw(inputId,btn){
+  const inp=document.getElementById(inputId);
+  const isText=inp.type==='text';
+  inp.type=isText?'password':'text';
+  btn.style.color=isText?'var(--gray-400)':'var(--red)';
+}
+
+// ============================================================
+//  TOAST
+// ============================================================
+function toast(msg,type=''){
+  const stack=document.getElementById('toastStack');
+  const el=document.createElement('div');
+  el.className=`toast-item ${type?'t-'+type:'t-info'}`;
+  const icons={success:'✅',error:'❌',info:'ℹ️',warn:'⚠️'};
+  el.innerHTML=`<span class="toast-icon">${icons[type]||'ℹ️'}</span><span>${msg}</span><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;
+  stack.appendChild(el);
+  setTimeout(()=>el.classList.add('show'),10);
+  setTimeout(()=>{el.classList.add('leaving');setTimeout(()=>el.remove(),300);},3500);
+}
+
+// ============================================================
+//  TICKER
+// ============================================================
+function buildTicker(){
+  const data=[
+    {l:'HN Nhà phố',v:'185 tr/m²',c:'up',d:'▲2.3%'},
+    {l:'HN Chung cư',v:'52 tr/m²',c:'up',d:'▲1.8%'},
+    {l:'HCM Nhà phố',v:'210 tr/m²',c:'dn',d:'▼0.5%'},
+    {l:'HCM Chung cư',v:'75 tr/m²',c:'up',d:'▲3.1%'},
+    {l:'Đà Nẵng',v:'120 tr/m²',c:'up',d:'▲4.2%'},
+    {l:'Hải Phòng',v:'48 tr/m²',c:'up',d:'▲1.2%'},
+    {l:'Bình Dương',v:'35 tr/m²',c:'up',d:'▲2.0%'},
+    {l:'Đồng Nai',v:'28 tr/m²',c:'dn',d:'▼0.8%'},
+    {l:'Cần Thơ',v:'22 tr/m²',c:'up',d:'▲1.5%'},
+    {l:'Khánh Hòa',v:'65 tr/m²',c:'up',d:'▲5.1%'},
+    {l:'Tin mới hôm nay',v:'12,845',c:'up',d:'↑543'},
+    {l:'Lượt xem hôm nay',v:'89,421',c:'up',d:'↑12%'},
+  ];
+  const html=data.map(d=>`<div class="ticker-item"><span class="ticker-label">${d.l}</span><span class="ticker-val">${d.v}</span><span class="ticker-chg ${d.c}">${d.d}</span></div>`).join('');
+  // double for seamless loop
+  document.getElementById('tickerInner').innerHTML=`<div class="ticker-brand"><span>MrDori</span></div>`+html+html;
+}
+
+// ============================================================
+//  CLICK OUTSIDE
+// ============================================================
+document.addEventListener('click',function(e){
+  // close dropdowns
+  if(!e.target.closest('.fchip'))closeFdrops();
+  if(!e.target.closest('.user-menu-wrap'))document.getElementById('userDropdown').classList.remove('open');
+  // close detail overlay
+  if(e.target.id==='detailOverlay')closeDetail();
+  // close modals
+  document.querySelectorAll('.modal-overlay').forEach(m=>{
+    if(e.target===m)closeModal(m.id);
+  });
+  // close lightbox
+  if(e.target.id==='lightbox')closeLightbox();
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    closeLightbox();
+    closeDetail();
+    document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));
+  }
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='ArrowRight')lbNav(1);
+});
+
+// ============================================================
+//  INIT
+// ============================================================
+buildTicker();
+buildFilterBar();
+buildTypeChecks();
+renderAuthUI();
+
+// Set header height CSS var
+function updateHeaderHeight(){
+  const h=document.querySelector('.header');
+  if(h)document.documentElement.style.setProperty('--header-h',h.offsetHeight+'px');
+}
+updateHeaderHeight();
+window.addEventListener('resize',updateHeaderHeight);
+
+// Render initial listing
+state.activeProps=[...PROPERTIES];
+document.getElementById('countNum').textContent=PROPERTIES.length.toLocaleString('vi');
+renderCards();
+</script>
+</body>
+</html>
